@@ -1,0 +1,5 @@
+# Keep the line width from breaking
+column_width = 280
+quote_style = "AutoPreferDouble"
+call_parentheses = "Always"
+# vim:ft=toml
