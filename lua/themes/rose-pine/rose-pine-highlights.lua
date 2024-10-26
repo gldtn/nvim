@@ -39,7 +39,7 @@ M.setup = function()
 		dashIcons = { fg = "gold" },
 		DashboardHeader = { fg = "subtle" },
 
-		-- [[ notify ]] --
+		-- notify
 		NotifyINFOBody = { bg = "base" },
 		NotifyWARNBody = { bg = "base" },
 		NotifyERRORBody = { bg = "base" },
@@ -51,13 +51,13 @@ M.setup = function()
 		NotifyDEBUGBorder = { bg = "base" },
 		NotifyTRACEBorder = { bg = "base" },
 
-		-- [[ Neo-tree ]] --
+		-- neotree
 		NeoTreeNormal = { bg = "surface" },
 		NeoTreeDirectoryIcon = { fg = "love" },
-		NeotreeFloatTitle = { link = "ButtonGold" },
+		NeotreeFloatTitle = title.float,
 		NeoTreeFloatBorder = { fg = "surface", bg = "surface" },
 
-		-- [[ Treesitter highlights ]] --
+		-- treesitter
 		["@boolean"] = { fg = "love", italic = true },
 		["@string"] = { fg = "foam", italic = false },
 		["@variable"] = { fg = "gold", italic = false },

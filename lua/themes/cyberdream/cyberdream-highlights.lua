@@ -47,6 +47,10 @@ M.setup = function(c)
 		["@keyword.repeat"] = { fg = c.orange, italic = true }, --keep?
 		["@keyword.function"] = { fg = c.orange, italic = true }, -- function()
 		["@keyword.conditional"] = { fg = c.orange, italic = true }, --keep?
+
+		-- neotree
+		NeoTreeNormal = { bg = c.bgAlt },
+		NeoTreeFloatTitle = title.float,
 	}
 	-- Merge schema/extra hls
 	for k, v in pairs(extra_highlights) do

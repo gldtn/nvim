@@ -38,6 +38,9 @@ M.on_highlights = function(hl, c)
 		dashKey6 = { fg = c.red },
 		dashIcons = { fg = c.yellow },
 		DashboardHeader = { fg = c.comment },
+
+		-- neotree
+		NeoTreeFloatTitle = title.float,
 	}
 
 	-- Add extra highlights to the hl table
