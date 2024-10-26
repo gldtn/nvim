@@ -1,6 +1,6 @@
 return {
 	-- cyberdream dark
-	{ label = "bg", color = "#16181a" },
+	-- { label = "bg", color = "#16181a" },
 	{ label = "bgAlt", color = "#1e2124" },
 	{ label = "bgHighlight", color = "#3c4048" },
 	{ label = "fg", color = "#ffffff" },
