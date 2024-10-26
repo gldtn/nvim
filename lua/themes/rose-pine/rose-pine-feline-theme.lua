@@ -56,6 +56,9 @@ local theme = {
 	-- lazy
 	lazy_fg = p.foam,
 	lazy_bg = p.bg,
+	-- inactive
+	inactive_fg = p.love,
+	inactive_bg = p.overlay,
 }
 
 -- [ modes ]

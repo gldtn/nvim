@@ -57,6 +57,9 @@ local theme = {
 	-- lazy
 	lazy_fg = p.green,
 	lazy_bg = p.bg,
+	-- inactive
+	inactive_fg = p.orange,
+	inactive_bg = p.bgAlt,
 }
 
 -- mode-specific colors

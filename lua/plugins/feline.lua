@@ -58,7 +58,7 @@ return {
 				},
 				inactive = {
 					{
-						c.inactive.inactive,
+						c.inactive,
 					},
 				},
 			},

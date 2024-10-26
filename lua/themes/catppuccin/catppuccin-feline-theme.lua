@@ -13,7 +13,7 @@ local theme = {
 	lavender = p.lavender,
 	rosewater = p.rosewater,
 	-- base colors
-	fg = p.base,
+	fg = p.text,
 	bg = p.base,
 	fg_alt = p.text,
 	bg_alt = p.surface0,
@@ -58,6 +58,9 @@ local theme = {
 	-- lazy
 	lazy_fg = p.green,
 	lazy_bg = p.bg,
+	-- inactive
+	inactive_fg = p.flamingo,
+	inactive_bg = p.crust,
 }
 
 -- mode-specific colors
