@@ -93,7 +93,6 @@ return {
 			pattern = { "*" },
 			callback = function()
 				local theme = require("themes." .. _G.active_theme .. "." .. _G.active_theme .. "-feline-theme")
-				feline.use_theme(theme)
 				feline.setup({
 					theme = theme.theme,
 					vi_mode_colors = theme.mode_theme,
