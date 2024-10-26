@@ -1,0 +1,16 @@
+# macOS system files
+.DS_Store
+
+# Lua plugin lock file
+lazy-lock.json
+
+# Folder for disabled plugins
+lua/plugins/disabled/
+
+# Swap, backup, and undo files (Neovim)
+*.swp
+*.swo
+*.bak
+*.tmp
+*.old
+*.un~
