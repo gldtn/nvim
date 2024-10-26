@@ -9,6 +9,7 @@ M.setup = function(c)
 		fzf1 = c.blue,
 		fzf2 = c.cyan,
 		fzf3 = c.magenta,
+		fzf4 = c.orange,
 	}
 	local neutral = {
 		color1 = c.fg,
@@ -37,6 +38,13 @@ M.setup = function(c)
 		dashIcons = { fg = c.orange },
 		DashboardHeader = { fg = c.grey },
 
+		-- neotree
+		NeoTreeNormal = { bg = primary.color2 },
+		NeoTreeFloatTitle = title.float,
+
+		-- lazy
+		LazyNormal = { bg = primary.color2 },
+
 		-- treesitter
 		["@Constant"] = { fg = c.pink, italic = true }, -- string, number, boolean, this, super
 		["@boolean"] = { fg = c.orange, italic = true }, -- boolean
@@ -47,10 +55,6 @@ M.setup = function(c)
 		["@keyword.repeat"] = { fg = c.orange, italic = true }, --keep?
 		["@keyword.function"] = { fg = c.orange, italic = true }, -- function()
 		["@keyword.conditional"] = { fg = c.orange, italic = true }, --keep?
-
-		-- neotree
-		NeoTreeNormal = { bg = c.bgAlt },
-		NeoTreeFloatTitle = title.float,
 	}
 	-- Merge schema/extra hls
 	for k, v in pairs(extra_highlights) do
