@@ -1,11 +1,9 @@
----@type LazyPluginSpec
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "main",
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 		"nvim-lua/plenary.nvim",
-		-- "nvim-tree/nvim-web-devicons",
 		{ "echasnovski/mini.icons", version = false },
 	},
 	lazy = true,
@@ -31,7 +29,7 @@ return {
 		require("neo-tree").setup({
 			open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy" },
 			window = {
-				position = "float",
+				position = "right",
 				width = 40,
 				popup = {
 					-- Center the popup horizontally and vertically

@@ -24,12 +24,13 @@ M.get_highlights = function(accent, neutral, primary, title)
 		-- fzf-lua results
 		FzfLuaMarker = { fg = accent.fzf1 },
 		FzfLuaFzfMatch = { fg = accent.fzf1 },
-		FzfLuaFzfPointer = { fg = primary.color2 },
+		FzfLuaFzfPointer = { fg = primary.color3 },
 
 		-- fzf-lua backgrounds
 		FzfLuaBackdrop = { bg = primary.color1 },
 		FzfLuaNormal = { fg = neutral.color1, bg = primary.color2 },
-		FzfLuaFzfPrompt = { fg = accent.ff1, bg = primary.color2 },
+		FzfLuaFzfPrompt = { fg = accent.fzf1, bg = primary.color2 },
+		FzfLuaPreviewNormal = { fg = neutral.color1, bg = primary.color2 },
 
 		-- fzf-lua borders
 		FzfLuaBorder = { fg = primary.color2, bg = primary.color2 },
