@@ -1,9 +1,9 @@
 -- Define themes and their repositories
 local themes = {
-	["rose-pine"] = "rose-pine/neovim",
-	["catppuccin"] = "catppuccin/nvim",
-	["tokyonight"] = "folke/tokyonight.nvim",
-	["cyberdream"] = "scottmckendry/cyberdream.nvim",
+	["rose-pine"] = { repo = "rose-pine/neovim", dev = false },
+	["catppuccin"] = { repo = "catppuccin/nvim", dev = false },
+	["tokyonight"] = { repo = "folke/tokyonight.nvim", dev = false },
+	["cyberdream"] = { repo = "scottmckendry/cyberdream.nvim", dev = true },
 }
 
 -- Path to store the active theme for persistence
@@ -18,7 +18,7 @@ local function load_saved_theme()
 			return saved_theme
 		end
 	end
-	return "catppuccin" -- Default theme
+	return "cyberdream" -- Default theme
 end
 
 -- Save the active theme
@@ -33,21 +33,6 @@ _G.active_theme = load_saved_theme()
 local function switch_kitty_theme(theme)
 	local kitty_script = os.getenv("XDG_CONFIG_HOME") .. "/kitty/toggle-kitty-theme.py"
 	os.execute("python3 " .. kitty_script .. " " .. theme)
-end
-
--- Configure the themes for Lazy.nvim
-local specs = {}
-for name, repo in pairs(themes) do
-	specs[#specs + 1] = {
-		repo,
-		name = name,
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("themes." .. name .. "." .. name).setup()
-			vim.cmd("colorscheme " .. _G.active_theme)
-		end,
-	}
 end
 
 -- Switch themes using fzf-lua
@@ -80,5 +65,20 @@ local function switch_theme()
 end
 
 vim.keymap.set("n", "<C-k><C-t>", switch_theme, { desc = "Switch Theme" })
+
+-- Configure the themes for Lazy.nvim
+local specs = {}
+for name, url in pairs(themes) do
+	specs[#specs + 1] = {
+		url.repo,
+		dev = url.dev,
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("themes." .. name .. "." .. name).setup()
+			vim.cmd("colorscheme " .. _G.active_theme)
+		end,
+	}
+end
 
 return specs

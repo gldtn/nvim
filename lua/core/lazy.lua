@@ -21,19 +21,13 @@ require("lazy").setup({
 		path = "~/git/projects",
 		fallback = true,
 	},
+	spec = {
+		{ import = "plugins" },
+	},
 	ui = {
 		backdrop = 25,
-		border = {
-			{ "╭", "FloatBorder" },
-			{ "─", "FloatBorder" },
-			{ "╮", "FloatBorder" },
-			{ "│", "FloatBorder" },
-			{ "╯", "FloatBorder" },
-			{ "─", "FloatBorder" },
-			{ "╰", "FloatBorder" },
-			{ "│", "FloatBorder" },
-		},
-		title = " lazy package manager ",
+		border = "rounded",
+		title = " lazy.nvim ",
 	},
 	install = {
 		missing = true,
@@ -41,9 +35,6 @@ require("lazy").setup({
 	checker = {
 		enabled = true,
 		frequency = 3600,
-	},
-	spec = {
-		{ import = "plugins" },
 	},
 	performance = {
 		rtp = {
@@ -56,11 +47,5 @@ require("lazy").setup({
 				"tutor",
 			},
 		},
-	},
-	rocks = {
-		enabled = false,
-		-- Install rocks in the lazy directory
-		-- This is the default
-		-- path = vim.fn.stdpath("data") .. "/lazy/rocks",
 	},
 })
