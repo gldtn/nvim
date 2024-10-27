@@ -40,6 +40,7 @@ M.setup = function(c)
 
 		-- neotree
 		NeoTreeFloatTitle = title.float,
+		BlinkCmpLabel = { fg = c.fg, bg = "NONE" },
 
 		-- background overrides
 		LazyNormal = { bg = primary.color2 },

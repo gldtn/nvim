@@ -7,3 +7,5 @@ for _, file in ipairs(dir_files) do
 		require(module_name)
 	end
 end
+
+require("core.autocmds")

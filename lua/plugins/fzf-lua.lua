@@ -13,6 +13,7 @@ return {
         { "<C-f><C-g>", "<cmd>FzfLua live_grep<CR>", desc = "Live Grep" },
         { "<C-h><C-h>", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
         { "<C-f><C-c>", "<cmd>FzfLua colorschemes<CR>", desc = "Colorscheme" },
+        { "<C-f><C-o>", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
         { "<C-f><C-d>", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles", },
     },
 	opts = {

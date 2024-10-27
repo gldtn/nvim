@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			height = vim.o.lines,
 			focusable = false,
 			style = "minimal",
-			zindex = 29, -- Set below Neo-tree’s typical zindex
+			zindex = 29,
 		})
 
 		vim.api.nvim_set_hl(0, backdropName, { link = "Normal", default = true })
