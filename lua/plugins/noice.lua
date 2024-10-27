@@ -8,7 +8,7 @@ return {
 			opts = {
 				timeout = 3000,
 				stages = "slide",
-				top_down = false,
+				top_down = true,
 			},
 		},
 	},

@@ -36,6 +36,11 @@ M.setup = function(c)
 		dashKey6 = { fg = c.red },
 		dashIcons = { fg = c.peach },
 		DashboardHeader = { fg = c.subtext1 },
+
+		-- background overrides
+		LazyNormal = { bg = primary.color2 },
+		MasonNormal = { bg = primary.color2 },
+		NeoTreeNormal = { bg = primary.color2 },
 	}
 
 	-- Merge schema/extra hls

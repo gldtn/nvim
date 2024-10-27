@@ -39,23 +39,27 @@ M.setup = function()
 		dashIcons = { fg = "gold" },
 		DashboardHeader = { fg = "subtle" },
 
-		-- notify
-		NotifyINFOBody = { bg = "base" },
-		NotifyWARNBody = { bg = "base" },
-		NotifyERRORBody = { bg = "base" },
-		NotifyDEBUGBody = { bg = "base" },
-		NotifyTRACEBody = { bg = "base" },
-		NotifyINFOBorder = { bg = "base" },
-		NotifyWARNBorder = { bg = "base" },
-		NotifyERRORBorder = { bg = "base" },
-		NotifyDEBUGBorder = { bg = "base" },
-		NotifyTRACEBorder = { bg = "base" },
+		-- background overrides
+		LazyNormal = { bg = primary.color2 },
+		MasonNormal = { bg = primary.color2 },
+		NeoTreeNormal = { bg = primary.color2 },
 
 		-- neotree
-		NeoTreeNormal = { bg = "surface" },
 		NeoTreeDirectoryIcon = { fg = "love" },
 		NeotreeFloatTitle = title.float,
-		NeoTreeFloatBorder = { fg = "surface", bg = "surface" },
+		NeoTreeFloatBorder = { fg = primary.color2, bg = primary.color2 },
+
+		-- notify
+		NotifyINFOBody = { bg = primary.color1 },
+		NotifyWARNBody = { bg = primary.color1 },
+		NotifyERRORBody = { bg = primary.color1 },
+		NotifyDEBUGBody = { bg = primary.color1 },
+		NotifyTRACEBody = { bg = primary.color1 },
+		NotifyINFOBorder = { bg = primary.color1 },
+		NotifyWARNBorder = { bg = primary.color1 },
+		NotifyERRORBorder = { bg = primary.color1 },
+		NotifyDEBUGBorder = { bg = primary.color1 },
+		NotifyTRACEBorder = { bg = primary.color1 },
 
 		-- treesitter
 		["@boolean"] = { fg = "love", italic = true },

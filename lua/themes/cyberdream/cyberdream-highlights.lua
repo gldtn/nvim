@@ -39,11 +39,12 @@ M.setup = function(c)
 		DashboardHeader = { fg = c.grey },
 
 		-- neotree
-		NeoTreeNormal = { bg = primary.color2 },
 		NeoTreeFloatTitle = title.float,
 
-		-- lazy
+		-- background overrides
 		LazyNormal = { bg = primary.color2 },
+		MasonNormal = { bg = primary.color2 },
+		NeoTreeNormal = { bg = primary.color2 },
 
 		-- treesitter
 		["@Constant"] = { fg = c.pink, italic = true }, -- string, number, boolean, this, super

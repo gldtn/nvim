@@ -41,6 +41,9 @@ M.on_highlights = function(hl, c)
 
 		-- neotree
 		NeoTreeFloatTitle = title.float,
+
+		-- background overrides
+		MasonNormal = { bg = primary.color2 },
 	}
 
 	-- Add extra highlights to the hl table
