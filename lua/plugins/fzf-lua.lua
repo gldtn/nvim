@@ -39,7 +39,7 @@ return {
 			formatter = "path.filename_first",
 		},
 		grep = {
-			prompt = "   ",
+			prompt = " 󰱼  ",
 			rg_glob = true,
 			glob_flag = "--iglob",
 			glob_separator = "%s%-%-",
@@ -52,6 +52,7 @@ return {
 				preview = { hidden = "hidden" },
 			},
 		},
+		oldfiles = { prompt = "   " },
 		helptags = { prompt = "   " },
 		manpages = { prompt = "   " },
 		highlights = { prompt = "   " },

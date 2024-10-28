@@ -44,7 +44,7 @@ local function switch_theme()
 	end
 
 	require("fzf-lua").fzf_exec(theme_list, {
-		prompt = "Select a theme> ",
+		prompt = "   ",
 		actions = {
 			["default"] = function(selected)
 				local new_theme = selected[1]
@@ -58,8 +58,8 @@ local function switch_theme()
 			end,
 		},
 		winopts = {
-			height = 0.3,
-			width = 0.3,
+			height = 0.43,
+			width = 0.33,
 		},
 	})
 end
