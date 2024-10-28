@@ -14,6 +14,7 @@ return {
         { "<C-h><C-h>", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
         { "<C-f><C-c>", "<cmd>FzfLua colorschemes<CR>", desc = "Colorscheme" },
         { "<C-f><C-o>", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
+		{ "<leader><leader>", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
         { "<C-f><C-d>", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles", },
     },
 	opts = {
@@ -42,6 +43,14 @@ return {
 			rg_glob = true,
 			glob_flag = "--iglob",
 			glob_separator = "%s%-%-",
+		},
+		buffers = {
+			prompt = "   ",
+			winopts = {
+				width = 0.33,
+				height = 0.43,
+				preview = { hidden = "hidden" },
+			},
 		},
 		helptags = { prompt = "   " },
 		manpages = { prompt = "   " },

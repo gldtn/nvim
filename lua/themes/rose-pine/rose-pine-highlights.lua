@@ -49,6 +49,8 @@ M.setup = function()
 		NeotreeFloatTitle = title.float,
 		NeoTreeFloatBorder = { fg = primary.color2, bg = primary.color2 },
 
+		BufferLineIndicatorSelected = { bg = "base", underline = true, sp = "red" },
+
 		-- notify
 		NotifyINFOBody = { bg = primary.color1 },
 		NotifyWARNBody = { bg = primary.color1 },

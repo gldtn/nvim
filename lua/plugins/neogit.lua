@@ -5,7 +5,6 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim", -- required
 		"sindrets/diffview.nvim", -- diff integration
-		"nvim-telescope/telescope.nvim", -- telescope integration
 	},
 	cmd = "Neogit",
         -- stylua: ignore
@@ -48,7 +47,6 @@ return {
 		},
 		kind = "tab", -- tab/floating/split/vsplit
 		commit_editor = { show_staged_diff = false },
-		commit_select_view = { kind = "vsplit" },
 		graph_style = "unicode",
 		integrations = {
 			fzf_lua = true,

@@ -15,6 +15,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- IMPORTANT:
+-- setup lader keys prior to loading lazy
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+
 require("lazy").setup({
 	---@diagnostic disable-next-line: assign-type-mismatch
 	dev = {

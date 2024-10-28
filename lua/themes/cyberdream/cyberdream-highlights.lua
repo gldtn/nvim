@@ -26,6 +26,9 @@ M.setup = function(c)
 		preview = { fg = primary.color1, bg = c.green },
 	}
 
+	local abg = c.bgAlt
+	local pbg = c.bg
+
 	local schema_highlights = schema.get_highlights(accent, neutral, primary, title)
 	local extra_highlights = {
 		-- dashboard
@@ -38,7 +41,7 @@ M.setup = function(c)
 		dashIcons = { fg = c.orange },
 		DashboardHeader = { fg = c.grey },
 
-		-- neotree
+		-- general highlights
 		NeoTreeFloatTitle = title.float,
 		BlinkCmpLabel = { fg = c.fg, bg = "NONE" },
 		-- NeogitFloatHeader = { fg = c.fg, bg = c.red },
