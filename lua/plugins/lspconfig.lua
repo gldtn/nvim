@@ -34,6 +34,7 @@ return {
 			ensure_installed = {
 				"zls",
 				"cssls",
+				"taplo",
 				"lua_ls",
 				"jsonls",
 				"bashls",

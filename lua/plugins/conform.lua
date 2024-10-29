@@ -23,19 +23,6 @@ return {
 				javascript = { "prettierd" },
 				python = { "isort", "black" },
 				blade = { "blade-formatter" },
-				-- shell formatters
-				-- sh = {
-				-- 	"shfmt",
-				-- 	args = { "-i", "2", "-ci", "-bn", "-s" },
-				-- },
-				-- zsh = {
-				-- 	"shfmt",
-				-- 	args = { "-i", "2", "-ci", "-bn", "-s" },
-				-- },
-				-- bash = {
-				-- 	"shfmt",
-				-- 	args = { "-i", "2", "-ci", "-bn", "-s" },
-				-- },
 			},
 			notify_on_error = true,
 			format_on_save = function(bufnr)

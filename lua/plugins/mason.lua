@@ -18,6 +18,8 @@ return {
 			"jq",
 			"pint",
 			"shfmt",
+			"black",
+			"isort",
 			"stylua",
 			"prettierd",
 			"rustywind",
