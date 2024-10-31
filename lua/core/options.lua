@@ -1,6 +1,4 @@
 local options = {
-	-- General settings
-
 	-- Ident settings
 	tabstop = 4, -- Number of spaces that a <tab> uses
 	title = true, -- Set the title of the window to the file name
@@ -34,7 +32,7 @@ local options = {
 	-- File settings
 	encoding = "utf-8", -- Set encoding for the file
 	fileencoding = "utf-8", -- Set encoding for the file
-	swapfile = false, -- Disable swap files
+	swapfile = false, -- Disable swap file<D-s> q
 	backup = false, -- Disable backup files
 	undofile = true, -- Enable undo files
 
@@ -67,5 +65,3 @@ local options = {
 for option, value in pairs(options) do
 	vim.opt[option] = value
 end
-
-vim.scriptencoding = "utf-8" -- Set encoding for scripts

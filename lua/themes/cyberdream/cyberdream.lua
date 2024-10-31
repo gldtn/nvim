@@ -13,7 +13,7 @@ M.setup = function()
 			end,
 		},
 	})
-	vim.api.nvim_set_keymap("n", "<C-d>", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
+	vim.keymap.set("n", "<C-t><C-t>", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
 	vim.api.nvim_create_autocmd("User", {
 		pattern = "CyberdreamToggleMode",
 		callback = function(ev)

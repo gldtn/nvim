@@ -21,6 +21,7 @@ map("n", "<D-a>", "gg0VG$", { desc = "Select all" })
 
 -- Nvim quit
 map("n", "<D-q>", "<cmd>qa<cr>", { desc = "Exit nvim" })
+map("n", "<D-r>", "<cmd>cq<cr>", { desc = "Restart nvim" })
 map("n", "<leader>q", "<cmd>qa!<cr>", { desc = "Quit without saving" })
 
 -- [[ save file ]]
