@@ -7,15 +7,27 @@ return {
 	},
     -- stylua: ignore
     keys = {
-        { "<C-f><C-f>", "<cmd>FzfLua files<CR>", desc = "Files" },
-        { "<C-f><C-w>", "<cmd>FzfLua grep_cword<CR>", desc = "Grep Word" },
-        { "<C-f><C-h>", "<cmd>FzfLua helptags<CR>", desc = "Helptags" },
-        { "<C-f><C-g>", "<cmd>FzfLua live_grep<CR>", desc = "Live Grep" },
-        { "<C-h><C-h>", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
-        { "<C-f><C-c>", "<cmd>FzfLua colorschemes<CR>", desc = "Colorscheme" },
-        { "<C-f><C-o>", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
+        { "<leader>ff", "<cmd>FzfLua files<CR>", desc = "Files" },
+        { "<leader>fw", "<cmd>FzfLua grep_cword<CR>", desc = "Grep Word" },
+        { "<leader>fh", "<cmd>FzfLua helptags<CR>", desc = "Helptags" },
+        { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live Grep" },
+        { "<leader>fl", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
+        { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
 		{ "<leader><leader>", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
-        { "<C-f><C-d>", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles", },
+        { "<leader>fd", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles" },
+        -- live_grep current buffer
+        { "<leader>fb", function()
+            require("fzf-lua").lgrep_curbuf({
+                cmd = "rg --column --line-number --no-heading --color=always --smart-case",
+                winopts = {
+                    height = 0.3,
+                    width = 1,
+                    row = vim.o.lines - 2,
+                    border = { "▍", " ", " ", " ", " ", " ", "▍", "▍" },
+                    fullscreen = false,
+                },
+            })
+        end, desc = "Live Grep Current Buffer" },
     },
 	opts = {
 		"default-title",

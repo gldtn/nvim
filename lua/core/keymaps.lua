@@ -100,12 +100,6 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
--- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
-
 -- Track.nvim
 map("n", "<c-space>", "<cmd>Track views<cr>", { desc = "List marked files" })
 map("n", "<leader>mb", "<cmd>Track branches<cr>", { desc = "Track branches" })
@@ -117,64 +111,13 @@ map("n", "<leader>mu", "<cmd>Unmark<cr>", { desc = "Unmark file" })
 map("n", "-", "<cmd>Neotree toggle right<cr>", { desc = "Toggle file explorer" })
 map("n", "\\", "<cmd>Neotree toggle float<cr>", { desc = "Float file explorer" })
 
--- Code/LSP
-map("n", "<leader>cl", ":LspInfo<cr>", { desc = "LSP Info" })
-map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
-map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
-map("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
-map("n", "gr", ":FzfLua lsp_references<cr>", { desc = "Goto References" })
-map("n", "gI", ":FzfLua lsp_implementations<cr>", { desc = "Goto Implementation" })
-map("n", "gd", ":fzfLua lsp_definitions<cr>", { desc = "Goto Definition" })
-map("n", "gy", ":FzfLua lsp_typedefs<cr>", { desc = "Goto Type Definition" })
-
--- Keymap to trigger live_grep for the current file only
-map("n", "<leader>fg", function()
-	require("fzf-lua").lgrep_curbuf({
-		cmd = "rg --column --line-number --no-heading --color=always --smart-case", -- Customize with desired rg options
-		winopts = {
-			height = 0.3, -- 30% of the window height
-			width = 1, -- full window width
-			row = vim.o.lines - 2, -- position near the bottom of the window
-			border = { "▍", " ", " ", " ", " ", " ", "▍", "▍" },
-			fullscreen = false, -- Do not open fullscreen
-			-- preview = {
-			--           horizontal = "right:50%",  -- Adjust the preview size
-			-- },
-		},
-	})
-end, { desc = "Fzf-lua live grep for current buffer" })
-
 -- ------------------------------------------------
 -- [[ Tools ]]
 -- ------------------------------------------------
-map("n", "<C-k><C-l>", "<cmd>Lazy<cr>", { desc = "Lazy" })
-map("n", "<C-k><C-s>", "<cmd>Lazy sync<cr>", { desc = "Lazy sync" })
-map("n", "<C-k><C-m>", "<cmd>Mason<cr>", { desc = "Mason" })
+map("n", "<C-l><C-l>", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<C-l><C-s>", "<cmd>Lazy sync<cr>", { desc = "Lazy sync" })
+map("n", "<C-m><C-m>", "<cmd>Mason<cr>", { desc = "Mason" })
 map("n", "<C-g><C-g>", "<cmd>Neogit<cr>", { desc = "Neo-git" })
 
 -- Clear search with <esc>
 map("n", "<esc>", ":noh<cr><esc>", { desc = "Escape and clear hlsearch" })
-
-local themes = {
-	{
-		name = "rose-pine",
-		setup = function()
-			require("themes.rose-pine.rose-pine").setup()
-		end,
-	},
-	{
-		name = "cyberdream",
-		setup = function()
-			require("themes.cyberdream.cyberdream").setup()
-		end,
-	},
-	{
-		name = "catppuccin",
-		setup = function()
-			require("themes.catppuccin.catppuccin").setup()
-		end,
-	},
-}

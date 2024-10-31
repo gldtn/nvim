@@ -26,9 +26,6 @@ M.setup = function(c)
 		preview = { fg = primary.color1, bg = c.green },
 	}
 
-	local abg = c.bgAlt
-	local pbg = c.bg
-
 	local schema_highlights = schema.get_highlights(accent, neutral, primary, title)
 	local extra_highlights = {
 		-- dashboard
@@ -47,6 +44,7 @@ M.setup = function(c)
 		-- NeogitFloatHeader = { fg = c.fg, bg = c.red },
 
 		-- background overrides
+		NormalFloat = { bg = c.bg },
 		LazyNormal = { bg = primary.color2 },
 		MasonNormal = { bg = primary.color2 },
 		NeoTreeNormal = { bg = primary.color2 },

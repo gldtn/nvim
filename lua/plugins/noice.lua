@@ -14,6 +14,8 @@ return {
 	},
 	opts = {
 		lsp = {
+			hover = { enabled = false },
+			signature = { enabled = false },
 			override = {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 				["vim.lsp.util.stylize_markdown"] = true,
@@ -32,13 +34,31 @@ return {
 				},
 				opts = { skip = true },
 			},
+			{
+				filter = {
+					event = "lsp",
+					kind = "progress",
+					cond = function(message)
+						local client = vim.tbl_get(message.opts, "progress", "client")
+						return client == "lua_ls"
+					end,
+				},
+				opts = { skip = true },
+			},
 		},
 		presets = {
+			inc_rename = false,
 			bottom_search = true,
+			lsp_doc_border = false,
+			command_palette = true,
 			long_message_to_split = true,
-			lsp_doc_border = true,
 		},
 		views = {
+			split = {
+				enter = true,
+				size = "20%",
+				position = "bottom",
+			},
 			mini = {
 				win_options = {
 					winblend = 0,
@@ -46,7 +66,7 @@ return {
 			},
 		},
 		cmdline = {
-			view = "cmdline",
+			view = "cmdline_popup",
 			format = {
 				cmdline = {
 					pattern = "^:",

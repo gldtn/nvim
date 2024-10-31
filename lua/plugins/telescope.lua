@@ -48,11 +48,9 @@ return {
 	keys = {
 		{ "<C-k><C-g>", live_grep, desc = "Live Grep" },
         { "<C-k><C-w>", grep_current_word, desc = "Grep current word" },
-        -- { "<C-k><C-t>", "<cmd>Telescope colorscheme<cr>", desc = "Themes" },
 		{ "<C-k><C-h>", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },
         { "<C-k><C-f>", "<cmd>Telescope find_files<cr>", desc = "Find File" },
 		{ "<C-k><C-r>", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
-		-- { "<leader><leader>", "<cmd>Telescope buffers<cr>", desc = "List Buffers" },
         { "<C-k><C-n>", function() require("telescope").extensions.notify.notify() end, desc = "Notifications", },
         { "<C-k><C-b>", "<cmd>Telescope file_browser path=%:p:h select_buffer=true initial_mode=normal<CR>", desc = "File drawer" },
 	},
