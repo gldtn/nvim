@@ -6,6 +6,7 @@ return {
 	dependencies = {
 		-- "nvim-treesitter/nvim-treesitter-textobjects",
 		"windwp/nvim-ts-autotag",
+		"EmranMR/tree-sitter-blade",
 	},
 	opts = {
 		highlight = {
@@ -38,6 +39,7 @@ return {
 		autotag = { enable = true },
 		incremental_selection = { enable = true },
 	},
+	-- Setup tree-sitter-blade parser
 	config = function(_, opts)
 		vim.filetype.add({
 			pattern = {
@@ -47,8 +49,8 @@ return {
 
 		require("nvim-treesitter.configs").setup(opts)
 		---@class ParserConfig
-		---@field install_info table The information for installing the parser.
-		---@field filetype string The filetype this parser is associated with.
+		---@field install_info table Information for installing the parser.
+		---@field filetype string Filetype this parser is associated with.
 		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
 		---@type ParserConfig

@@ -1,18 +1,9 @@
--- ------------------------------------------------
--- [[ Keymaps Settings ]] --
--- ------------------------------------------------
---  See `:help vim.keymap.set()`
-
 -- Shorten `vim.keymap.set` function to `Map`,
 local map = require("core.util").map
-
--- Leader key, remap to space
-map("", "<Space>", "<Nop>")
 
 -- ------------------------------------------------
 -- [[ Keymaps ]] --
 -- ------------------------------------------------
--- a good part of these keymaps was stolen from Lazyvim.
 
 -- Yank bindings
 map({ "n", "v" }, "p", '"_dP') -- don't yank on paste selection
@@ -107,7 +98,6 @@ map("n", "<leader>mm", "<cmd>Mark<cr>", { desc = "Mark file" })
 map("n", "<leader>mu", "<cmd>Unmark<cr>", { desc = "Unmark file" })
 
 -- Filesystem/Browser
--- map("n", "-", "<cmd>Triptych<cr>", { desc = "Browse files" })
 map("n", "-", "<cmd>Neotree toggle right<cr>", { desc = "Toggle file explorer" })
 map("n", "\\", "<cmd>Neotree toggle float<cr>", { desc = "Float file explorer" })
 
