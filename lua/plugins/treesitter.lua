@@ -25,10 +25,12 @@ return {
 			"toml",
 			"bash",
 			-- web
-			"php",
 			"css",
 			"html",
 			"scss",
+			"blade",
+			"phpdoc",
+			"php_only",
 		},
 		ignore_install = {},
 		auto_install = true,
@@ -37,6 +39,26 @@ return {
 		incremental_selection = { enable = true },
 	},
 	config = function(_, opts)
+		vim.filetype.add({
+			pattern = {
+				[".*%.blade%.php"] = "blade",
+			},
+		})
+
 		require("nvim-treesitter.configs").setup(opts)
+		---@class ParserConfig
+		---@field install_info table The information for installing the parser.
+		---@field filetype string The filetype this parser is associated with.
+		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+		---@type ParserConfig
+		parser_config.blade = {
+			install_info = {
+				url = "https://github.com/EmranMR/tree-sitter-blade",
+				files = { "src/parser.c" },
+				branch = "main",
+			},
+			filetype = "blade",
+		}
 	end,
 }

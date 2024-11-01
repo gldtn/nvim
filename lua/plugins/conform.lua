@@ -11,7 +11,6 @@ return {
 
 		conform.setup({
 			formatters_by_ft = {
-				php = { "pint" },
 				zls = { "zigfmt" },
 				lua = { "stylua" },
 				toml = { "taplo" },
@@ -23,6 +22,7 @@ return {
 				javascript = { "prettierd" },
 				python = { "isort", "black" },
 				blade = { "blade-formatter" },
+				php = { "pint", "php-cs-fixer" },
 			},
 			notify_on_error = true,
 			format_on_save = function(bufnr)
