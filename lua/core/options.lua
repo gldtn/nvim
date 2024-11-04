@@ -43,9 +43,12 @@ local options = {
 	pumheight = 25, -- Popup menu height
 	menuitems = 30, -- Menu items limit
 
+	-- status & tabline
+	laststatus = 3, -- last window status line (3 = show always, only last window)
+	showtabline = 0, -- show tabline (0 = hide)
+
 	-- Misc settings
 	mouse = "a", -- Enable mouse mode
-	laststatus = 3,
 	termguicolors = true, -- Better term colors (24-bit)
 	virtualedit = "block", -- Set highlight to block
 	clipboard = "unnamedplus", -- Synchronizes the system clipboard
