@@ -1,7 +1,7 @@
 return {
 	"hrsh7th/nvim-cmp",
 	lazy = true,
-	enabled = true,
+	enabled = false,
 	event = { "InsertEnter" },
 	dependencies = {
 		-- Auto-completion sources

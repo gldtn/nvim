@@ -12,6 +12,7 @@ return {
         { "<leader>fh", "<cmd>FzfLua helptags<CR>", desc = "Helptags" },
         { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live Grep" },
         { "<leader>fl", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
+        { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
         { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
 		{ "<leader><leader>", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
         { "<leader>fd", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles" },

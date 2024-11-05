@@ -1,20 +1,20 @@
 return {
-	{
-		"zbirenbaum/copilot.lua",
-		lazy = true,
-		cmd = "Copilot",
-		--build = ":Copilot auth",
-		event = "InsertEnter",
-		opts = {
-			suggestion = { enabled = false },
-			panel = { enabled = false },
+	"zbirenbaum/copilot.lua",
+	lazy = true,
+	cmd = "Copilot",
+	event = "InsertEnter",
+	opts = {
+		panel = { enabled = false },
+		suggestion = {
+			auto_trigger = true,
+			keymap = {
+				accept = "<TAB>",
+				accept_word = "<C-w>",
+				accept_line = "<C-l>",
+				next = "<C-j>",
+				prev = "<C-k>",
+				dismiss = "<ESC>",
+			},
 		},
-	},
-	{
-		"zbirenbaum/copilot-cmp",
-		event = "InsertEnter",
-		config = function()
-			require("copilot_cmp").setup()
-		end,
 	},
 }
