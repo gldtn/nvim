@@ -19,6 +19,9 @@ vim.opt.rtp:prepend(lazypath)
 -- setup lader keys prior to loading lazy
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+-- Set encoding for the file
+vim.o.encoding = "utf-8" -- Set encoding for the file
+vim.o.fileencoding = "utf-8" -- Set encoding for the file
 
 require("lazy").setup({
 	---@diagnostic disable-next-line: assign-type-mismatch
