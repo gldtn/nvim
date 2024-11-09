@@ -65,6 +65,14 @@ local options = {
 }
 
 -- Loop through & set the options above
-for option, value in pairs(options) do
-	vim.opt[option] = value
+local function set_options()
+	for option, value in pairs(options) do
+		vim.opt[option] = value
+	end
 end
+
+-- Delay setting options until after lazy.nvim setup
+vim.api.nvim_create_autocmd("User", {
+	pattern = "LazyDone",
+	callback = set_options,
+})
