@@ -41,11 +41,23 @@ return {
 			},
 		},
 		lazygit = {
-			configure = false,
+			configure = true,
 			win = {
 				position = "float",
 				width = 0.99,
 				height = 0.99,
+			},
+			theme = {
+				[241] = { fg = "Special" },
+				activeBorderColor = { fg = "NvimNumber", bold = true },
+				cherryPickedCommitBgColor = { fg = "Identifier" },
+				cherryPickedCommitFgColor = { fg = "Function" },
+				defaultFgColor = { fg = "Normal" },
+				inactiveBorderColor = { fg = "Comment" },
+				optionsTextColor = { fg = "Function" },
+				searchingActiveBorderColor = { fg = "MatchParen", bold = true },
+				selectedLineBgColor = { bg = "Visual" }, -- set to `default` to have no background colour
+				unstagedChangesColor = { fg = "DiagnosticError" },
 			},
 		},
 		terminal = {
