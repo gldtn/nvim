@@ -44,11 +44,12 @@ M.setup = function(c)
 		-- NeogitFloatHeader = { fg = c.fg, bg = c.red },
 
 		-- background overrides
-		NormalFloat = { bg = c.bg },
+		NormalFloat = { bg = primary.color1 },
 		LazyNormal = { bg = primary.color2 },
 		MasonNormal = { bg = primary.color2 },
 		NeoTreeNormal = { bg = primary.color2 },
-		NeoTreeFloatNormal = { bg = primary.color2 },
+		NeoTreeFloatNormal = { bg = primary.color1 },
+		SnacksBackdrop = { fg = primary.color1, bg = primary.color1 },
 
 		-- treesitter
 		["@Constant"] = { fg = c.pink, italic = true }, -- string, number, boolean, this, super
