@@ -24,27 +24,27 @@ local info_msg = vim.log.levels.INFO
 
 -- Save file
 map("n", "<D-s>", function()
-	vim.cmd("w")
-	vim.notify(save_msg, info_msg, { title = save_title })
+    vim.cmd("w")
+    vim.notify(save_msg, info_msg, { title = save_title })
 end, { desc = save_desc })
 
 -- Save file, exit insert mode
 map("i", "<D-s>", function()
-	vim.cmd("stopinsert") -- Exit insert mode
-	vim.cmd("w")
-	vim.notify(save_msg, info_msg, { title = save_title })
+    vim.cmd("stopinsert") -- Exit insert mode
+    vim.cmd("w")
+    vim.notify(save_msg, info_msg, { title = save_title })
 end, { desc = save_desc })
 
 -- Save file and exit visual modes (visual, visual-line, visual-block)
 map({ "v", "x" }, "<D-s>", function()
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
-	vim.cmd("w")
-	vim.notify(save_msg, info_msg, { title = save_title })
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+    vim.cmd("w")
+    vim.notify(save_msg, info_msg, { title = save_title })
 end, { desc = save_desc })
 
 -- Hints
 map("n", "<leader>th", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "✨lsp toggle inlay hints" })
 
 -- Identing; stay in indent mode
@@ -77,11 +77,9 @@ map({ "n", "v" }, "<D-p>", "gcip", { remap = true, desc = "Paragraph comment" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Alternate Buffer" })
-map("n", "<D-w>", function()
-	snacks.bufdelete()
-end, { desc = "Delete buffer" })
-map("n", "<leader>bd", function()
-	snacks.bufdelete()
+map("n", "<D-w>", "<cmd>bd<cr>", { desc = "Delete buffer" })
+map("n", "<M-w>", function()
+    snacks.bufdelete()
 end, { desc = "Delete buffer" })
 
 -- Move to window using the <ctrl> hjkl keys
@@ -115,30 +113,30 @@ snacks.toggle.line_number():map("<leader>tl")
 snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>tc")
 snacks.toggle.treesitter():map("<leader>tT")
 if vim.lsp.inlay_hint then
-	snacks.toggle.inlay_hints():map("<leader>th")
+    snacks.toggle.inlay_hints():map("<leader>th")
 end
 snacks
-	.toggle({
-		name = "Copilot Completion",
-		get = function()
-			return not require("copilot.client").is_disabled()
-		end,
-		set = function(state)
-			if state then
-				require("copilot.command").enable()
-			else
-				require("copilot.command").disable()
-			end
-		end,
-	})
-	:map("<leader>tc")
+    .toggle({
+        name = "Copilot Completion",
+        get = function()
+            return not require("copilot.client").is_disabled()
+        end,
+        set = function(state)
+            if state then
+                require("copilot.command").enable()
+            else
+                require("copilot.command").disable()
+            end
+        end,
+    })
+    :map("<leader>tc")
 
 -- browse to git repo
 map("n", "<leader>gb", function()
-	snacks.gitbrowse()
+    snacks.gitbrowse()
 end, { desc = "Git Browse" })
 
--- Terminal/Run...
+-- Terminal/Run... ; thanks @scottmckendry
 -- stylua: ignore start
 map({"n", "t"}, "<C-\\>", function() snacks.terminal() end, { desc = "Toggle Terminal" })
 map("n", "<leader>gg", function() snacks.lazygit() end, { desc = "Lazygit" })

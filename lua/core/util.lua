@@ -1,4 +1,10 @@
+local wk = require("which-key")
+
 local M = {}
+
+M.desc = function(key, desc)
+	wk.add({ key, desc = desc })
+end
 
 --- Wrapper around `vim.keymap.set` to include defaults
 ---@see vim.keymap.set()
