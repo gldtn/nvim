@@ -1,140 +1,131 @@
 return {
-	"neovim/nvim-lspconfig",
-	event = { "BufReadPre", "BufNewFile" },
-	dependencies = {
-		{
-			"folke/lazydev.nvim",
-			ft = "lua",
-			opts = {
-				library = {
-					{ path = "luvit-meta/library", words = { "vim%.uv" } },
-				},
-			},
-		},
-		"saghen/blink.cmp",
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		{ "Bilal2453/luvit-meta", lazy = true },
-	},
-	opts = {
-		diagnostics = {
-			signs = true,
-			underline = true,
-			update_in_insert = true,
-			virtual_text = {
-				source = "if_many",
-				prefix = " ● ",
-			},
-		},
-		fancy_border = {
-			{ "", "DiagnosticHint" },
-			{ "─", "Comment" },
-			{ "╮", "Comment" },
-			{ "│", "Comment" },
-			{ "╯", "Comment" },
-			{ "─", "Comment" },
-			{ "╰", "Comment" },
-			{ "│", "Comment" },
-		},
-		servers = {
-			lua_ls = {
-				on_init = function(client)
-					local path = client.workspace_folders[1].name
-					if not vim.uv.fs_stat(path .. "/.luarc.json") and not vim.uv.fs_stat(path .. "/.luarc.jsonc") then
-						client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
-							Lua = {
-								runtime = {
-									version = "LuaJIT",
-								},
-								workspace = {
-									checkThirdParty = false,
-									library = vim.api.nvim_get_runtime_file("", true),
-								},
-							},
-						})
-						client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-					end
-					return true
-				end,
-				on_attach = function(client)
-					client.server_capabilities.semanticTokensProvider = nil
-				end,
-			},
-			phpactor = {
-				init_options = {
-					["language_server_worse_reflection.inlay_hints.enable"] = true,
-					["language_server_worse_reflection.inlay_hints.types"] = true,
-				},
-			},
-			zls = {
-				cmd = { "/usr/local/bin/zls" },
-				settings = {
-					zls = {
-						format = {
-							enable = true,
-						},
-					},
-				},
-			},
-		},
-	},
-	config = function(_, opts)
-		-- Apply diagnostic configuration
-		vim.diagnostic.config(opts.diagnostics)
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+        {
+            "folke/lazydev.nvim",
+            ft = "lua",
+            opts = {
+                library = {
+                    { path = "luvit-meta/library", words = { "vim%.uv" } },
+                },
+            },
+        },
+        "saghen/blink.cmp",
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        { "Bilal2453/luvit-meta", lazy = true },
+    },
+    opts = {
+        diagnostics = {
+            signs = true,
+            underline = true,
+            update_in_insert = true,
+            virtual_text = {
+                source = "if_many",
+                prefix = " ● ",
+            },
+        },
+        fancy_border = {
+            { "", "DiagnosticHint" },
+            { "─", "Comment" },
+            { "╮", "Comment" },
+            { "│", "Comment" },
+            { "╯", "Comment" },
+            { "─", "Comment" },
+            { "╰", "Comment" },
+            { "│", "Comment" },
+        },
+    },
+    config = function(_, opts)
+        -- Define the `on_attach` function for shared key mappings
+        local on_attach = function(client, bufnr)
+            local buf_map = function(mode, lhs, rhs, desc)
+                vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, noremap = true, desc = desc })
+            end
 
-		-- Set custom borders
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = opts.fancy_border })
-		vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = opts.fancy_border })
-		require("lspconfig.ui.windows").default_options = { border = "rounded" }
+            -- Key mappings
+            buf_map("n", "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", "Code Action")
+            buf_map("n", "<leader>cd", vim.diagnostic.open_float, "Line Diagnostics")
+            buf_map("n", "<leader>cr", vim.lsp.buf.rename, "Rename")
+            buf_map("n", "gd", "<CMD>FzfLua lsp_definitions<CR>", "Goto Definition")
+            buf_map("n", "gD", "<CMD>FzfLua lsp_declarations<CR>", "Goto Declaration")
+            buf_map("n", "gi", "<CMD>FzfLua lsp_implementations<CR>", "Goto Implementation")
+            buf_map("n", "gr", "<CMD>FzfLua lsp_references<CR>", "Goto References")
+            buf_map("n", "gy", "<CMD>FzfLua lsp_typedefs<CR>", "Goto Type Definition")
+            buf_map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
+            buf_map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature Help")
+        end
 
-		-- Set up Mason with ensured installations
-		require("mason-lspconfig").setup({
-			ensure_installed = { "zls", "cssls", "taplo", "lua_ls", "jsonls", "bashls", "yamlls", "phpactor", "tailwindcss", "rust_analyzer" },
-			automatic_installation = true,
-		})
+        -- Apply diagnostic configuration
+        vim.diagnostic.config(opts.diagnostics)
 
-		-- Mason handlers for server setup
-		require("mason-lspconfig").setup_handlers({
-			function(server_name)
-				local config = opts.servers[server_name] or {}
-				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-				require("lspconfig")[server_name].setup(config)
-			end,
-		})
+        -- Set custom borders
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = opts.fancy_border })
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = opts.fancy_border })
+        require("lspconfig.ui.windows").default_options = { border = "rounded" }
 
-		-- LSP Keymaps on LspAttach Event
-		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-			callback = function(ev)
-				local client = vim.lsp.get_client_by_id(ev.data.client_id)
-				if not client then
-					return
-				end
+        -- Define individual server configurations
+        local servers = {
+            lua_ls = {
+                on_init = function(client)
+                    local path = client.workspace_folders[1].name
+                    if not vim.uv.fs_stat(path .. "/.luarc.json") and not vim.uv.fs_stat(path .. "/.luarc.jsonc") then
+                        client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
+                            Lua = {
+                                runtime = { version = "LuaJIT" },
+                                workspace = {
+                                    checkThirdParty = false,
+                                    library = vim.api.nvim_get_runtime_file("", true),
+                                },
+                            },
+                        })
+                        client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+                    end
+                    return true
+                end,
+                on_attach = function(client, bufnr)
+                    client.server_capabilities.semanticTokensProvider = nil
+                    on_attach(client, bufnr)
+                end,
+            },
+            phpactor = {
+                init_options = {
+                    ["language_server_worse_reflection.inlay_hints.enable"] = true,
+                    ["language_server_worse_reflection.inlay_hints.types"] = true,
+                },
+            },
+            zls = {
+                cmd = { "/usr/local/bin/zls" },
+                settings = {
+                    zls = {
+                        format = { enable = true },
+                    },
+                },
+            },
+            sourcekit = {
+                -- cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" },
+                capabilities = {
+                    workspace = {
+                        didChangeWatchedFiles = { dynamicRegistration = true },
+                    },
+                },
+            },
+        }
 
-				local keymap_opts = { buffer = ev.buf, noremap = true, silent = true }
+        -- Automatically apply `on_attach` to servers unless overridden
+        for name, config in pairs(servers) do
+            if not config.on_attach then
+                config.on_attach = on_attach
+            end
+            require("lspconfig")[name].setup(config)
+        end
 
-				-- Key mappings with capability checks
-				local mappings = {
-					["<leader>cl"] = { ":LspInfo<CR>", "LSP Info" },
-					["<leader>cr"] = { vim.lsp.buf.rename, "Rename", capability = client.supports_method("textDocument/rename") },
-					["<leader>ca"] = { vim.lsp.buf.code_action, "Code Action", capability = client.supports_method("textDocument/codeAction") },
-					["<leader>cd"] = { vim.diagnostic.open_float, "Line Diagnostics" },
-					["K"] = { vim.lsp.buf.hover, "Hover", capability = client.supports_method("textDocument/hover") },
-					["gD"] = { vim.lsp.buf.declaration, "Goto Declaration", capability = client.supports_method("textDocument/declaration") },
-					["<C-k>"] = { vim.lsp.buf.signature_help, "Signature Help", capability = client.supports_method("textDocument/signatureHelp") },
-					["gr"] = { ":FzfLua lsp_references<CR>", "Goto References", capability = client.supports_method("textDocument/references") },
-					["gI"] = { ":FzfLua lsp_implementations<CR>", "Goto Implementation", capability = client.supports_method("textDocument/implementation") },
-					["gd"] = { ":FzfLua lsp_definitions<CR>", "Goto Definition", capability = client.supports_method("textDocument/definition") },
-					["gy"] = { ":FzfLua lsp_typedefs<CR>", "Goto Type Definition", capability = client.supports_method("textDocument/typeDefinition") },
-				}
-
-				-- Apply mappings and capability checks
-				for key, value in pairs(mappings) do
-					if value.capability == nil or value.capability then
-						vim.keymap.set("n", key, value[1], vim.tbl_extend("force", keymap_opts, { desc = value[2] }))
-					end
-				end
-			end,
-		})
-	end,
+        -- Mason setup
+        require("mason-lspconfig").setup({
+            ensure_installed = { "zls", "cssls", "taplo", "lua_ls", "jsonls", "bashls", "yamlls", "phpactor", "tailwindcss", "rust_analyzer" },
+            automatic_installation = true,
+        })
+        vim.lsp.set_log_level("debug")
+    end,
 }

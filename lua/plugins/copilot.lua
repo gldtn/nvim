@@ -33,7 +33,7 @@ return {
         -- Setup CopilotChat
         chat.setup({
             debug = false,
-            model = "gpt-4o",
+            model = "cpt-4o",
             allow_insecure = true,
             question_header = "  gldtn: ",
             answer_header = "  Copilot: ",

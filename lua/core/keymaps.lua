@@ -1,6 +1,6 @@
 -- Shorten `vim.keymap.set` function to `Map`,
 local map = require("core.util").map
-local snacks = require("snacks")
+-- local snacks = require("snacks")
 
 -- ------------------------------------------------
 -- [[ Keymaps ]] --
@@ -78,9 +78,9 @@ map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Alternate Buffer" })
 map("n", "<D-w>", "<cmd>bd<cr>", { desc = "Delete buffer" })
-map("n", "<M-w>", function()
-    snacks.bufdelete()
-end, { desc = "Delete buffer" })
+-- map("n", "<M-w>", function()
+--     snacks.bufdelete()
+-- end, { desc = "Delete buffer" })
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
@@ -105,46 +105,46 @@ map("n", "-", "<cmd>Neotree toggle right<cr>", { desc = "Toggle file explorer" }
 map("n", "\\", "<cmd>Neotree toggle float<cr>", { desc = "Float file explorer" })
 
 -- toggle options
-snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
-snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
-snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>tL")
-snacks.toggle.diagnostics():map("<leader>td")
-snacks.toggle.line_number():map("<leader>tl")
-snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>tc")
-snacks.toggle.treesitter():map("<leader>tT")
-if vim.lsp.inlay_hint then
-    snacks.toggle.inlay_hints():map("<leader>th")
-end
-snacks
-    .toggle({
-        name = "Copilot Completion",
-        get = function()
-            return not require("copilot.client").is_disabled()
-        end,
-        set = function(state)
-            if state then
-                require("copilot.command").enable()
-            else
-                require("copilot.command").disable()
-            end
-        end,
-    })
-    :map("<leader>tc")
-
--- browse to git repo
-map("n", "<leader>gb", function()
-    snacks.gitbrowse()
-end, { desc = "Git Browse" })
+-- snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+-- snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
+-- snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>tL")
+-- snacks.toggle.diagnostics():map("<leader>td")
+-- snacks.toggle.line_number():map("<leader>tl")
+-- snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>tc")
+-- snacks.toggle.treesitter():map("<leader>tT")
+-- if vim.lsp.inlay_hint then
+--     snacks.toggle.inlay_hints():map("<leader>th")
+-- end
+-- snacks
+--     .toggle({
+--         name = "Copilot Completion",
+--         get = function()
+--             return not require("copilot.client").is_disabled()
+--         end,
+--         set = function(state)
+--             if state then
+--                 require("copilot.command").enable()
+--             else
+--                 require("copilot.command").disable()
+--             end
+--         end,
+--     })
+--     :map("<leader>tc")
+--
+-- -- browse to git repo
+-- map("n", "<leader>gb", function()
+--     snacks.gitbrowse()
+-- end, { desc = "Git Browse" })
 
 -- Terminal/Run... ; thanks @scottmckendry
 -- stylua: ignore start
-map({"n", "t"}, "<C-\\>", function() snacks.terminal() end, { desc = "Toggle Terminal" })
-map("n", "<leader>gg", function() snacks.lazygit() end, { desc = "Lazygit" })
-map("n", "<leader>rlf", ":luafile %<cr>", { desc = "Run Current Lua File" })
-map("n", "<leader>rlt", ":PlenaryBustedFile %<cr>", { desc = "Run Lua Test File" })
-map("n", "<leader>rss", function() snacks.terminal.toggle(vim.fn.expand("%:p"), { interactive = false }) end, { desc = "Run shell script (bash, powershell, etc)" })
-map("n", "<leader>rm", function() snacks.terminal.toggle("make", { interactive = false }) end, { desc = "Run make" })
-map("n", "<leader>rt", function() snacks.terminal.toggle("task", { interactive = false }) end, { desc = "Run task" })
+-- map({"n", "t"}, "<C-\\>", function() snacks.terminal() end, { desc = "Toggle Terminal" })
+-- map("n", "<leader>gg", function() snacks.lazygit() end, { desc = "Lazygit" })
+-- map("n", "<leader>rlf", ":luafile %<cr>", { desc = "Run Current Lua File" })
+-- map("n", "<leader>rlt", ":PlenaryBustedFile %<cr>", { desc = "Run Lua Test File" })
+-- map("n", "<leader>rss", function() snacks.terminal.toggle(vim.fn.expand("%:p"), { interactive = false }) end, { desc = "Run shell script (bash, powershell, etc)" })
+-- map("n", "<leader>rm", function() snacks.terminal.toggle("make", { interactive = false }) end, { desc = "Run make" })
+-- map("n", "<leader>rt", function() snacks.terminal.toggle("task", { interactive = false }) end, { desc = "Run task" })
 -- stylua: ignore end
 
 -- ------------------------------------------------
