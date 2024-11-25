@@ -113,10 +113,11 @@ return {
             },
         }
 
-        -- Automatically apply `on_attach` to servers unless overridden
+        -- Apply settings to all servers
         for name, config in pairs(servers) do
             if not config.on_attach then
                 config.on_attach = on_attach
+                config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
             end
             require("lspconfig")[name].setup(config)
         end
