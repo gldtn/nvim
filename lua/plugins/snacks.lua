@@ -1,21 +1,24 @@
+---@diagnostic disable: undefined-global
 return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
     ---@type snacks.Config
     opts = {
-        bigfile = { enabled = true },
-        dashboard = { enabled = false },
-        indent = { enabled = true },
         input = { enabled = true },
+        words = { enabled = true },
+        scroll = { enabled = true },
+        indent = { enabled = true },
+        bigfile = { enabled = true },
+        animate = { enabled = true },
+        lazygit = { enabled = true },
+        quickfile = { enabled = true },
+        dashboard = { enabled = false },
+        statuscolumn = { enabled = true },
         notifier = {
             enabled = true,
             timeout = 3000,
         },
-        quickfile = { enabled = true },
-        scroll = { enabled = true },
-        statuscolumn = { enabled = true },
-        words = { enabled = true },
         styles = {
             notification = {
                 -- wo = { wrap = true } -- Wrap notifications
