@@ -2,6 +2,7 @@ local colors = require("themes." .. _G.active_theme .. "." .. _G.active_theme ..
 return {
     "brenoprata10/nvim-highlight-colors",
     event = "BufReadPre",
+    enabled = false,
     opts = {
         render = "virtual",
         virtual_symbol = "●",

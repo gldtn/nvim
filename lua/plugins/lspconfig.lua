@@ -39,6 +39,7 @@ return {
     },
     config = function(_, opts)
         -- Define the `on_attach` function for shared key mappings
+        ---@diagnostic disable-next-line: unused-local
         local on_attach = function(client, bufnr)
             local buf_map = function(mode, lhs, rhs, desc)
                 vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, noremap = true, desc = desc })
@@ -104,7 +105,7 @@ return {
                 },
             },
             sourcekit = {
-                -- cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" },
+                cmd = { "xcrun", "sourcekit-lsp" },
                 capabilities = {
                     workspace = {
                         didChangeWatchedFiles = { dynamicRegistration = true },

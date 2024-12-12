@@ -1,70 +1,78 @@
+--- @diagnostic disable: missing-fields
+local fancy_border = {
+    menu = { "󱐋", "WarningMsg" },
+    info = { "", "DiagnosticHint" },
+    body = { "─", "╮", "│", "╯", "─", "╰", "│" },
+}
+
 return {
     "saghen/blink.cmp",
     lazy = false,
     enabled = true,
-    -- version = "v0.*",
-    build = "cargo build --release",
+    version = "v0.*",
     dependencies = {
-        "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
+        -- "L3MON4D3/LuaSnip",
         "rafamadriz/friendly-snippets",
-        { "saghen/blink.compat", opts = { impersonate_nvim_cmp = true } },
+        "giuxtaposition/blink-cmp-copilot",
     },
-    config = function()
-        require("blink.cmp").setup({
-            sources = {
-                -- add lazydev to your completion providers
-                completion = {
-                    enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
-                },
-                providers = {
-                    -- dont show LuaLS require statements when lazydev has items
-                    lsp = { fallback_for = { "lazydev" }, name = "lsp" },
-                    lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
-                },
-            },
-            highlight = { use_nvim_cmp_as_default = true },
-            keymap = {
-                ["<C-y>"] = { "accept", "fallback" },
-                ["<C-n>"] = { "select_next", "fallback" },
-                ["<C-p>"] = { "select_prev", "fallback" },
-            },
-            windows = {
-                autocomplete = {
-                    draw = {
-                        align_to_component = "label",
-                        padding = 1,
-                        gap = 1,
-                        columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind" } },
-                        components = {},
-                    },
+    ---@module "blink.cmp"
+    ---@type blink.cmp.Config
+    opts = {
+        keymap = {
+            preset = "default",
+            ["<esc>"] = { "hide", "fallback" },
+            ["<C-y>"] = { "accept", "fallback" },
+            ["<C-n>"] = { "select_next", "fallback" },
+            ["<C-p>"] = { "select_prev", "fallback" },
+            -- escape with arrow keys
+            ["<Up>"] = { "hide", "fallback" },
+            ["<Down>"] = { "hide", "fallback" },
+            ["<Left>"] = { "hide", "fallback" },
+            ["<Right>"] = { "hide", "fallback" },
+        },
+        appearance = { use_nvim_cmp_as_default = true, nerd_font_variant = "mono" },
 
-                    border = {
-                        { "󱐋", "WarningMsg" },
-                        "─",
-                        "╮",
-                        "│",
-                        "╯",
-                        "─",
-                        "╰",
-                        "│",
-                    },
+        sources = {
+            providers = {
+                lsp = { fallback_for = { "lazydev" } },
+                lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+                copilot = {
+                    name = "copilot",
+                    module = "blink-cmp-copilot",
+                    -- score_offset = 0,
                 },
-                documentation = {
-                    auto_show = true,
-                    border = {
-                        { "", "DiagnosticHint" },
-                        "─",
-                        "╮",
-                        "│",
-                        "╯",
-                        "─",
-                        "╰",
-                        "│",
-                    },
-                },
-                signature_help = { border = "rounded" },
             },
-        })
-    end,
+            default = { "copilot", "lsp", "path", "snippets", "buffer", "lazydev" },
+        },
+
+        completion = {
+            menu = {
+                draw = {
+                    align_to_component = "label",
+                    padding = 1,
+                    gap = 1,
+                    columns = {
+                        { "kind_icon", gap = 1 },
+                        { "label", "label_description", gap = 1 },
+                        { "kind" },
+                    },
+                },
+                border = { fancy_border.menu, unpack(fancy_border.body) },
+            },
+            documentation = {
+                auto_show = true,
+                window = {
+                    border = { fancy_border.info, unpack(fancy_border.body) },
+                },
+            },
+            signature_help = {
+                window = {
+                    border = { fancy_border.info, unpack(fancy_border.body) },
+                },
+            },
+        },
+
+        -- Uncomment if needed
+        opts_extend = { "sources.default" },
+    },
 }
