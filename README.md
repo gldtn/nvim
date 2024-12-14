@@ -11,20 +11,24 @@ It’s optimized for my workflow, but with a few adjustments, it might just fit 
 ## Dashboard
 
 https://github.com/nvimdev/dashboard-nvim
+
 ![dashboard](shots/nvim-dashboard.png)
 
 ## Fzf-lua
 
 https://github.com/ibhagwan/fzf-lua
+
 ![fzf-lua](shots/nvim-fzf.png)
 
 ## Fzf-lua;
 
 **Fuzzy search**
 https://github.com/ibhagwan/fzf-lua
+
 ![fuzzy-search](shots/nvim-fuzzy-search.png)
 
 ## Feline
 
 https://github.com/freddiehaddad/feline.nvim
+
 ![Feline](shots/nvim-feline.png)
