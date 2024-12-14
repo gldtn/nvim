@@ -1,5 +1,6 @@
 return {
     "NeogitOrg/neogit",
+    dev = true,
     branch = "master",
     event = "BufReadPre",
     dependencies = {
