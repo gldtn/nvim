@@ -20,9 +20,8 @@ https://github.com/ibhagwan/fzf-lua
 
 ![fzf-lua](shots/nvim-fzf.png)
 
-## Fzf-lua;
+## Fzf-lua; fuzzy search
 
-**Fuzzy search**
 https://github.com/ibhagwan/fzf-lua
 
 ![fuzzy-search](shots/nvim-fuzzy-search.png)
