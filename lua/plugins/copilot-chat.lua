@@ -1,6 +1,6 @@
 return {
-    -- copilot-chat
     "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = false,
     branch = "main",
     dependencies = {
         "nvim-lua/plenary.nvim",

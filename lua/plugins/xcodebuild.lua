@@ -1,6 +1,6 @@
 return {
     "wojciech-kulik/xcodebuild.nvim",
-    enabled = true,
+    enabled = false,
     dependencies = {
         "nvim-telescope/telescope.nvim",
         "MunifTanjim/nui.nvim",
