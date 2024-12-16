@@ -66,7 +66,7 @@ return {
         vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = opts.fancy_border })
         require("lspconfig.ui.windows").default_options = { border = "rounded" }
 
-        -- Define individual server configurations
+        -- Server configurations
         local servers = {
             lua_ls = {
                 on_init = function(client)
@@ -118,8 +118,8 @@ return {
         for name, config in pairs(servers) do
             if not config.on_attach then
                 config.on_attach = on_attach
-                config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
             end
+            config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
             require("lspconfig")[name].setup(config)
         end
 

@@ -4,6 +4,7 @@ return {
     branch = "master",
     event = "BufReadPre",
     dependencies = {
+        "ibhagwan/fzf-lua",
         "nvim-lua/plenary.nvim", -- required
         "sindrets/diffview.nvim", -- diff integration
     },
