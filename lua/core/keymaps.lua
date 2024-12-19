@@ -77,7 +77,7 @@ map({ "n", "v" }, "<D-p>", "gcip", { remap = true, desc = "Paragraph comment" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Alternate Buffer" })
-map("n", "<C-w>", "<cmd>bd<cr>", { desc = "Delete buffer" })
+map("n", "<M-w>", "<cmd>bd<cr>", { desc = "Delete buffer" })
 -- map("n", "<M-w>", function()
 --     snacks.bufdelete()
 -- end, { desc = "Delete buffer" })
@@ -89,10 +89,10 @@ map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
 -- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+map("n", "<C-S-Up>", "<cmd>resize +12<cr>", { desc = "Increase Window Height" })
+map("n", "<C-S-Down>", "<cmd>resize -12<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-S-Left>", "<cmd>vertical resize 12<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-S-Right>", "<cmd>vertical resize +12<cr>", { desc = "Increase Window Width" })
 
 -- Track.nvim
 map("n", "<c-space>", "<cmd>Track views<cr>", { desc = "List marked files" })
@@ -103,6 +103,12 @@ map("n", "<leader>mu", "<cmd>Unmark<cr>", { desc = "Unmark file" })
 -- Filesystem/Browser
 map("n", "-", "<cmd>Neotree toggle right<cr>", { desc = "Toggle file explorer" })
 map("n", "\\", "<cmd>Neotree toggle float<cr>", { desc = "Float file explorer" })
+
+map("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source file" })
+
+-- Quickfix
+map("n", "<M-n>", "<cmd>cnext<CR>", { desc = "Next quickfix" })
+map("n", "<M-p>", "<cmd>cprev<CR>", { desc = "Previous quickfix" })
 
 -- Terminal/Run... ; thanks @scottmckendry
 -- stylua: ignore start
