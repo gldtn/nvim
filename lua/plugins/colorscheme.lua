@@ -3,7 +3,7 @@ local themes = {
   ["rose-pine"] = { repo = "rose-pine/neovim", dev = false },
   ["catppuccin"] = { repo = "catppuccin/nvim", dev = false },
   ["tokyonight"] = { repo = "folke/tokyonight.nvim", dev = false },
-  ["cyberdream"] = { repo = "scottmckendry/cyberdream.nvim", dev = true },
+  ["cyberdream"] = { repo = "scottmckendry/cyberdream.nvim", dev = false },
 }
 
 -- Path to store the active theme for persistence
@@ -18,7 +18,7 @@ local function load_saved_theme()
       return saved_theme
     end
   end
-  return "cyberdream" -- Default theme
+  return "" -- Default theme
 end
 
 -- Save the active theme

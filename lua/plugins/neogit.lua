@@ -14,11 +14,11 @@ return {
 			{ "<c-g>g", "<CMD>Neogit<CR>", desc = "Neogit" },
 			{ "<leader>gl", function() require("neogit").action("log", "log_current", { "--", vim.fn.expand("%") })() end, desc = "Git log for file", },
 			{ "<leader>gr", function()
-            local file = vim.fn.expand("%") vim.cmd([[execute "normal! \<ESC>"]])
-            local line_start = vim.fn.getpos("'<")[2]
-            local line_end = vim.fn.getpos("'>")[2]
-            require("neogit").action("log", "log_current", { "-L" .. line_start .. "," .. line_end .. ":" .. file })()
-          end, desc = "Git log for this range", mode = "v", },
+        local file = vim.fn.expand("%") vim.cmd([[execute "normal! \<ESC>"]])
+        local line_start = vim.fn.getpos("'<")[2]
+        local line_end = vim.fn.getpos("'>")[2]
+        require("neogit").action("log", "log_current", { "-L" .. line_start .. "," .. line_end .. ":" .. file })()
+      end, desc = "Git log for this range", mode = "v", },
 		},
   -- See: https://github.com/NeogitOrg/neogit#configuration
   opts = {

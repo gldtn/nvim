@@ -91,10 +91,10 @@ return {
       },
       documentation = {
         auto_show = true,
-        window = { border = { fancy_border.doc, table.unpack(fancy_border.body) } },
-      }, --
+        window = { border = { fancy_border.info, table.unpack(fancy_border.body) } },
+      },
       signature_help = {
-        window = { border = { fancy_border.doc, table.unpack(fancy_border.body) } },
+        window = { border = { fancy_border.info, table.unpack(fancy_border.body) } },
       },
     },
   },

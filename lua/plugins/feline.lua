@@ -21,7 +21,7 @@ return {
     }
 
     -- Components structure
-    -- vim.api.nvim_set_hl(0, "StatusLine", { bg = "bg", fg = "fg" })
+    vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
     feline.setup({
       components = {
         active = {
