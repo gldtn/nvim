@@ -4,7 +4,7 @@ local highlights = require("themes.cyberdream.cyberdream-highlights")
 M.setup = function()
   require("cyberdream").setup({
     cache = false,
-    transparent = false,
+    transparent = true,
     italic_comments = true,
     borderless_telescope = { border = false, style = "flat" },
     theme = {

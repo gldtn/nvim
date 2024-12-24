@@ -20,10 +20,11 @@ M.setup = function(c)
     color1 = c.bg,
     color2 = c.bgAlt,
     color3 = c.bgHighlight,
+    color4 = c.bg_solid,
   }
   local title = {
-    float = { fg = primary.color1, bg = c.blue },
-    preview = { fg = primary.color1, bg = c.green },
+    float = { fg = primary.color4, bg = c.blue },
+    preview = { fg = primary.color4, bg = c.green },
   }
 
   local schema_highlights = schema.get_highlights(accent, neutral, primary, title)
@@ -41,15 +42,14 @@ M.setup = function(c)
     -- general highlights
     NeoTreeFloatTitle = title.float,
     BlinkCmpLabel = { fg = c.fg, bg = "NONE" },
-    -- NeogitFloatHeader = { fg = c.fg, bg = c.red },
 
     -- background overrides
-    -- Normal = { fg = c.fg, bg = "NONE" },
-    NormalFloat = { bg = primary.color1 },
+    NormalFloat = { bg = primary.color4 },
     LazyNormal = { bg = primary.color2 },
     MasonNormal = { bg = primary.color2 },
     NeoTreeNormal = { bg = primary.color2 },
-    NeoTreeFloatNormal = { bg = primary.color1 },
+    NeoTreeFloatNormal = { bg = primary.color4 },
+    -- NeotreeBackdrop = { bg = primary.color4 },
 
     -- treesitter
     ["@Constant"] = { fg = c.pink, italic = true }, -- string, number, boolean, this, super

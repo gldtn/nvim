@@ -5,11 +5,11 @@ M.get_highlights = function(accent, neutral, primary, title)
     -- float defaults
     FloatTitle = title.float,
     PreviewTitle = title.preview,
-    LazyBackdrop = { bg = primary.color1 },
-    MasonBackdrop = { bg = primary.color1 },
-    NeoTreeBackdrop = { bg = primary.color1 },
+    LazyBackdrop = { bg = primary.color1, blend = 20 },
+    MasonBackdrop = { bg = primary.color1, blend = 20 },
+    NeotreeBackdrop = { bg = primary.color1, blend = 20 },
     FloatBorder = { fg = primary.color2, bg = primary.color2 },
-    SnacksBackdrop = { fg = primary.color1, bg = primary.color1 },
+    SnacksBackdrop = { fg = primary.color1, bg = primary.color1, blend = 20 },
 
     -- fzf-lua titles
     FzfLuaTitle = { link = "FloatTitle" },
