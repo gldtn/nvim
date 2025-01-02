@@ -4,10 +4,10 @@ local highlights = require("themes.tokyonight.tokyonight-highlights")
 
 M.setup = function()
   require("tokyonight").setup({
-    style = "moon", -- night, moon, storm, or day
+    style = "night", -- night, moon, storm, or day
     light_style = "moon",
     cache = true,
-    transparent = true,
+    transparent = false,
     day_brightness = 0.3,
     dim_inactive = false,
     lualine_bold = false,

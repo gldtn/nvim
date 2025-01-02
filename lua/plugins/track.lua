@@ -15,8 +15,8 @@ return {
     -- mappings
     local map = require("core.util").map
     map("n", "<c-space>", "<cmd>Track views<cr>", { desc = "List marked files" })
-    map("n", "<leader>tb", "<cmd>Track branches<cr>", { desc = "Track branches" })
-    map("n", "<leader>tm", "<cmd>Mark<cr>", { desc = "Mark file" })
-    map("n", "<leader>tu", "<cmd>Unmark<cr>", { desc = "Unmark file" })
+    map("n", "<leader>Tb", "<cmd>Track branches<cr>", { desc = "Track [b]ranches" })
+    map("n", "<leader>Tm", "<cmd>Mark<cr>", { desc = "[M]ark file" })
+    map("n", "<leader>Tu", "<cmd>Unmark<cr>", { desc = "[U]nmark file" })
   end,
 }

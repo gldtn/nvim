@@ -67,7 +67,7 @@ return {
         draw = {
           gap = 1,
           padding = 1,
-          align_to_component = "label",
+          align_to = "cursor",
           columns = {
             { "kind_icon", gap = 1 },
             { "label", "label_description", gap = 1 },
@@ -93,4 +93,5 @@ return {
       kind_icons = require("ui.icons").kinds,
     },
   },
+  opts_extend = { "sources.default" },
 }

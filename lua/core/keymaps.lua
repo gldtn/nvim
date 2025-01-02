@@ -43,9 +43,9 @@ map({ "v", "x" }, "<D-s>", function()
 end, { desc = save_desc })
 
 -- Hints
-map("n", "<leader>th", function()
+map("n", "<leader>Th", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, { desc = "lsp toggle inlay hints" })
+end, { desc = "LSP [t]oggle inlay [h]ints" })
 
 -- Identing; stay in indent mode
 map("v", "<", "<gv^")

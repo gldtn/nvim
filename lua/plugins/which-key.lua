@@ -34,11 +34,12 @@ return {
       { "<leader>m", group = "marks", icon = { icon = "󰸕", hl = "markdownH5" } },
       { "<leader>r", group = "find/replace", icon = { icon = "󰛔", hl = "markdownH4" } },
       { "<leader>s", group = "search" },
-      { "<leader>t", group = "toggles" },
-      { "<leader>x", group = "trouble", icon = { icon = "󱏚", color = "red" } },
-      { "<leader>T", group = "treesitter", icon = { icon = "", hl = "markdownH6" } },
-      { "<leader>Ti", "<cmd>InspectTree<cr>", desc = "inspect tree" },
-      { "<leader>Tu", "<cmd>TSUpdate<cr>", desc = "update parsers" },
+      { "<leader>T", group = "toggles" },
+      { "<leader>x", group = "xcode", icon = { icon = "", color = "blue" } },
+      { "<leader>t", group = "trouble", icon = { icon = "󱏚", color = "red" } },
+      { "<leader>S", group = "treesitter", icon = { icon = "", hl = "markdownH6" } },
+      { "<leader>Si", "<cmd>InspectTree<cr>", desc = "inspect tree" },
+      { "<leader>Su", "<cmd>TSUpdate<cr>", desc = "update parsers" },
     }
 
     wk.add({ mappings, keyopts })
