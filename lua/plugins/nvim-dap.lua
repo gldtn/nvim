@@ -1,5 +1,6 @@
 return {
   "mfussenegger/nvim-dap",
+  enabled = false,
   dependencies = {
     "wojciech-kulik/xcodebuild.nvim",
   },

@@ -13,8 +13,11 @@ return {
   version = "v0.*",
   -- build = "cargo build --release",
   dependencies = {
+    "moyiz/blink-emoji.nvim",
     "rafamadriz/friendly-snippets",
+    "Kaiser-Yang/blink-cmp-dictionary",
     "giuxtaposition/blink-cmp-copilot",
+    { "L3MON4D3/LuaSnip", version = "v2.*" },
   },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -29,18 +32,28 @@ return {
       ["<Right>"] = { "hide", "fallback" },
     },
 
+    snippets = { preset = "luasnip" },
+
     sources = {
       default = {
         "lsp",
         "path",
+        "emoji",
         "buffer",
         "copilot",
         "lazydev",
         "snippets",
+        "dictionary",
       },
       cmdline = {}, -- disable cmdline completion
 
       providers = {
+        emoji = {
+          module = "blink-emoji",
+          name = "Emoji",
+          score_offset = 15, -- Tune by preference
+          opts = { insert = true }, -- Insert emoji (default) or complete its name
+        },
         -- Copilot
         copilot = {
           name = "copilot",
@@ -57,6 +70,38 @@ return {
             return items
           end,
         },
+        -- dictionary
+        dictionary = {
+          module = "blink-cmp-dictionary",
+          name = "Dict",
+          score_offset = 20,
+          enabled = true,
+          max_items = 8,
+          min_keyword_length = 3,
+          opts = {
+            get_command = {
+              "rg", -- make sure this command is available in your system
+              "--color=never",
+              "--no-line-number",
+              "--no-messages",
+              "--no-filename",
+              "--ignore-case",
+              "--",
+              "${prefix}", -- this will be replaced by the result of 'get_prefix' function
+              vim.fn.expand("~/.config/nvim/dict/words"), -- where you dictionary is
+            },
+            documentation = {
+              enable = true, -- enable documentation to show the definition of the word
+              get_command = {
+                "wn", -- make sure this command is available in your system
+                "${word}", -- this will be replaced by the word to search
+                "-over",
+              },
+            },
+          },
+        },
+        -- LSP
+        lsp = { name = "LSP", module = "blink.cmp.sources.lsp" },
         -- LazyDev
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
       },

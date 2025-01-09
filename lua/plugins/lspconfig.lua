@@ -55,7 +55,7 @@ return {
       buf_map("n", "gr", "<CMD>FzfLua lsp_references<CR>", "Goto References")
       buf_map("n", "gy", "<CMD>FzfLua lsp_typedefs<CR>", "Goto Type Definition")
       buf_map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-      buf_map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature Help")
+      buf_map("n", "H", vim.lsp.buf.signature_help, "Signature Help")
     end
 
     -- Apply diagnostic configuration
