@@ -2,16 +2,8 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    {
-      "folke/lazydev.nvim",
-      ft = "lua",
-      opts = {
-        library = {
-          { path = "luvit-meta/library", words = { "vim%.uv" } },
-        },
-      },
-    },
     "saghen/blink.cmp",
+    "folke/lazydev.nvim",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     { "Bilal2453/luvit-meta", lazy = true },
@@ -55,7 +47,7 @@ return {
       buf_map("n", "gr", "<CMD>FzfLua lsp_references<CR>", "Goto References")
       buf_map("n", "gy", "<CMD>FzfLua lsp_typedefs<CR>", "Goto Type Definition")
       buf_map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-      buf_map("n", "H", vim.lsp.buf.signature_help, "Signature Help")
+      buf_map("n", "<C-S-h>", vim.lsp.buf.signature_help, "Signature Help")
     end
 
     -- Apply diagnostic configuration

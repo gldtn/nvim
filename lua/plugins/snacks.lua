@@ -22,9 +22,10 @@ return {
     },
     styles = {
       notification = {
-        -- wo = { wrap = true } -- Wrap notifications
+        wo = { wrap = true }, -- Wrap notifications
       },
     },
+    terminal = {},
   },
     -- stylua: ignore
   keys = {

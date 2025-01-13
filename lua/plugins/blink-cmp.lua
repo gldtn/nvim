@@ -13,11 +13,13 @@ return {
   version = "v0.*",
   -- build = "cargo build --release",
   dependencies = {
+    "folke/lazydev.nvim",
     "moyiz/blink-emoji.nvim",
     "rafamadriz/friendly-snippets",
-    "Kaiser-Yang/blink-cmp-dictionary",
     "giuxtaposition/blink-cmp-copilot",
     { "L3MON4D3/LuaSnip", version = "v2.*" },
+    "MeanderingProgrammer/render-markdown.nvim",
+    { "Kaiser-Yang/blink-cmp-dictionary", dependencies = { "nvim-lua/plenary.nvim" } },
   },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -42,17 +44,25 @@ return {
         "buffer",
         "copilot",
         "lazydev",
+        "markdown",
         "snippets",
         "dictionary",
       },
       cmdline = {}, -- disable cmdline completion
 
       providers = {
+        -- emoji
         emoji = {
           module = "blink-emoji",
           name = "Emoji",
           score_offset = 15, -- Tune by preference
           opts = { insert = true }, -- Insert emoji (default) or complete its name
+        },
+        -- markdown
+        markdown = {
+          name = "RenderMarkdown",
+          module = "render-markdown.integ.blink",
+          fallbacks = { "lsp" },
         },
         -- Copilot
         copilot = {
@@ -79,35 +89,26 @@ return {
           max_items = 8,
           min_keyword_length = 3,
           opts = {
-            get_command = {
-              "rg", -- make sure this command is available in your system
-              "--color=never",
-              "--no-line-number",
-              "--no-messages",
-              "--no-filename",
-              "--ignore-case",
-              "--",
-              "${prefix}", -- this will be replaced by the result of 'get_prefix' function
-              vim.fn.expand("~/.config/nvim/dict/words"), -- where you dictionary is
-            },
-            documentation = {
-              enable = true, -- enable documentation to show the definition of the word
-              get_command = {
-                "wn", -- make sure this command is available in your system
-                "${word}", -- this will be replaced by the word to search
-                "-over",
-              },
-            },
+            dictionary_directories = { vim.fn.expand("~/.config/nvim/dict") },
+            get_command = "fzf",
+            get_command_args = function(prefix)
+              return {
+                "--filter=" .. prefix,
+                "--sync",
+                "--no-sort",
+                "-i", -- -i to ignore case, +i to respect case, with no this line is smart case
+              }
+            end,
           },
         },
-        -- LSP
-        lsp = { name = "LSP", module = "blink.cmp.sources.lsp" },
         -- LazyDev
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
       },
     },
 
     completion = {
+      -- Don't select by default, don't auto insert on selection
+      list = { selection = { preselect = false, auto_insert = false } },
       menu = {
         draw = {
           gap = 1,
