@@ -5,31 +5,31 @@ return {
     { "echasnovski/mini.icons", version = false },
     { "junegunn/fzf", build = "./install --bin" },
   },
-    -- stylua: ignore
-    keys = {
-        { "<leader>ff", "<cmd>FzfLua files<CR>", desc = "Files" },
-        { "<leader>fw", "<cmd>FzfLua grep_cword<CR>", desc = "Grep Word" },
-        { "<leader>fh", "<cmd>FzfLua helptags<CR>", desc = "Helptags" },
-        { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live Grep" },
-        { "<leader>fl", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
-        { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
-        { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
-		{ "<leader><leader>", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
-        { "<leader>fd", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles" },
-        -- live_grep current buffer
-        { "<leader>fb", function()
-            require("fzf-lua").lgrep_curbuf({
-                cmd = "rg --column --line-number --no-heading --color=always --smart-case",
-                winopts = {
-                    height = 0.3,
-                    width = 1,
-                    row = vim.o.lines - 2,
-                    border = { "▍", " ", " ", " ", " ", " ", "▍", "▍" },
-                    fullscreen = false,
-                },
-            })
-        end, desc = "Live Grep Current Buffer" },
-    },
+  -- stylua: ignore
+  keys = {
+    { "<leader>ff", "<cmd>FzfLua files<CR>", desc = "Files" },
+    { "<leader>fw", "<cmd>FzfLua grep_cword<CR>", desc = "Grep Word" },
+    { "<leader>fh", "<cmd>FzfLua helptags<CR>", desc = "Helptags" },
+    { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live Grep" },
+    { "<leader>fl", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
+    { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
+    { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
+    { "<leader><leader>", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
+    { "<leader>fd", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles" },
+    -- live_grep current buffer
+    { "<leader>fb", function()
+      require("fzf-lua").lgrep_curbuf({
+        cmd = "rg --column --line-number --no-heading --color=always --smart-case",
+        winopts = {
+          height = 0.3,
+          width = 1,
+          row = vim.o.lines - 2,
+          border = { "▍", " ", " ", " ", " ", " ", "▍", "▍" },
+          fullscreen = false,
+        },
+      })
+    end, desc = "Live Grep Current Buffer" },
+  },
   opts = {
     "default-title",
     fzf_colors = true,
@@ -38,12 +38,16 @@ return {
       builtin = {
         ["<C-/>"] = "toggle-help",
         ["<C-f>"] = "toggle-fullscreen",
+        ["<C-h>"] = "toggle-hidden",
+        ["<C-i>"] = "toggle-ignore",
+        ["<C-S-f>"] = "toggle-follow",
       },
     },
     winopts = {
       width = 0.90,
       height = 0.80,
       backdrop = 25,
+      title_flags = false,
       preview = { horizontal = "right:70%" },
       border = { "▌", " ", " ", " ", " ", " ", "▌", "▌" },
     },

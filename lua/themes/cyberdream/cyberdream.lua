@@ -6,10 +6,9 @@ M.setup = function()
     cache = false,
     transparent = true,
     italic_comments = true,
-    borderless_telescope = { border = false, style = "flat" },
-    theme = {
-      variant = "auto",
-      overrides = function(c)
+    borderless_pickers = false,
+    highlights = {
+      function(c)
         return highlights.setup(c)
       end,
     },

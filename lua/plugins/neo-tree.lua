@@ -8,7 +8,7 @@ return {
   },
   lazy = true,
   cmd = { "Neotree" },
-  -- enabled = false,
+  enabled = false,
   init = function()
     vim.api.nvim_create_autocmd("BufEnter", {
       group = vim.api.nvim_create_augroup("load_neo_tree", {}),

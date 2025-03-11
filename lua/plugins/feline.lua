@@ -1,6 +1,7 @@
 return {
   "freddiehaddad/feline.nvim",
   dependencies = { "kyazdani42/nvim-web-devicons" },
+  enabled = false,
   config = function()
     local feline = require("feline")
     local comp = "ui.feline.components."

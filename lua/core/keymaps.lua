@@ -56,8 +56,8 @@ map("n", "O", "O<Esc>^")
 map("n", "o", "o<Esc>^")
 
 -- Map `n` to jump to next search result
-map("n", "n", "n", { desc = "Next search result" })
-map("n", "p", "N", { desc = "Previous search result" })
+map("n", "<C-n>", "n", { desc = "Next search result" })
+map("n", "<C-p>", "N", { desc = "Previous search result" })
 
 -- Move Lines
 map("n", "<C-j>", "<cmd>m .+1<cr>==", { desc = "Move line down (n)" })
@@ -83,16 +83,16 @@ map("n", "<leader>w", "<cmd>bd<cr>", { desc = "Delete buffer" })
 -- end, { desc = "Delete buffer" })
 
 -- Move to window using the <ctrl> <shift> hjkl keys
-map("n", "<C-S-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-map("n", "<C-S-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-map("n", "<C-S-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-map("n", "<C-S-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+map("n", "<C-M-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+map("n", "<C-M-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+map("n", "<C-M-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+map("n", "<C-M-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
 -- Resize window using <ctrl> <shift> arrow keys
-map("n", "<C-S-Up>", "<cmd>resize +12<cr>", { desc = "Increase Window Height" })
-map("n", "<C-S-Down>", "<cmd>resize -12<cr>", { desc = "Decrease Window Height" })
-map("n", "<C-S-Left>", "<cmd>vertical resize 12<cr>", { desc = "Decrease Window Width" })
-map("n", "<C-S-Right>", "<cmd>vertical resize +12<cr>", { desc = "Increase Window Width" })
+map("n", "<C-M-Up>", "<cmd>resize +12<cr>", { desc = "Increase Window Height" })
+map("n", "<C-M-Down>", "<cmd>resize -12<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-M-Left>", "<cmd>vertical resize 12<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-M-Right>", "<cmd>vertical resize +12<cr>", { desc = "Increase Window Width" })
 
 -- Track.nvim
 map("n", "<c-space>", "<cmd>Track views<cr>", { desc = "List marked files" })
@@ -101,7 +101,7 @@ map("n", "<leader>mm", "<cmd>Mark<cr>", { desc = "Mark file" })
 map("n", "<leader>mu", "<cmd>Unmark<cr>", { desc = "Unmark file" })
 
 -- Filesystem/Browser
-map("n", "\\", "<cmd>Neotree toggle float<cr>", { desc = "Float file explorer" })
+-- map("n", "\\", "<cmd>Neotree toggle float<cr>", { desc = "Float file explorer" })
 
 map("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source file" })
 

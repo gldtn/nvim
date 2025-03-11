@@ -48,14 +48,13 @@ return {
         "snippets",
         "dictionary",
       },
-      cmdline = {}, -- disable cmdline completion
 
       providers = {
         -- emoji
         emoji = {
           module = "blink-emoji",
           name = "Emoji",
-          score_offset = 15, -- Tune by preference
+          score_offset = 10, -- Tune by preference
           opts = { insert = true }, -- Insert emoji (default) or complete its name
         },
         -- markdown
@@ -84,10 +83,10 @@ return {
         dictionary = {
           module = "blink-cmp-dictionary",
           name = "Dict",
-          score_offset = 20,
+          score_offset = 15,
           enabled = true,
-          max_items = 8,
-          min_keyword_length = 3,
+          max_items = 3,
+          min_keyword_length = 5,
           opts = {
             dictionary_directories = { vim.fn.expand("~/.config/nvim/dict") },
             get_command = "fzf",
