@@ -9,7 +9,7 @@ local map = require("core.util").map
 -- Yank bindings
 map({ "n", "v" }, "p", '"_dP') -- don't yank on paste selection
 map("n", "x", '"_x', { noremap = true }) -- don't yank on single char delete
-map("n", "<D-a>", "gg0VG$", { desc = "Select all" })
+map("n", "<C-a>", "gg1VG$", { desc = "Select all" })
 
 -- Nvim quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Exit nvim" })
@@ -23,20 +23,20 @@ local save_msg = "File saved successfully!"
 local info_msg = vim.log.levels.INFO
 
 -- Save file
-map("n", "<D-s>", function()
+map("n", "<C-s>", function()
   vim.cmd("w")
   vim.notify(save_msg, info_msg, { title = save_title })
 end, { desc = save_desc })
 
 -- Save file, exit insert mode
-map("i", "<D-s>", function()
+map("i", "<C-s>", function()
   vim.cmd("stopinsert") -- Exit insert mode
   vim.cmd("w")
   vim.notify(save_msg, info_msg, { title = save_title })
 end, { desc = save_desc })
 
 -- Save file and exit visual modes (visual, visual-line, visual-block)
-map({ "v", "x" }, "<D-s>", function()
+map({ "v", "x" }, "<C-s>", function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
   vim.cmd("w")
   vim.notify(save_msg, info_msg, { title = save_title })
@@ -60,18 +60,18 @@ map("n", "<C-n>", "n", { desc = "Next search result" })
 map("n", "<C-p>", "N", { desc = "Previous search result" })
 
 -- Move Lines
-map("n", "<C-j>", "<cmd>m .+1<cr>==", { desc = "Move line down (n)" })
-map("n", "<C-k>", "<cmd>m .-2<cr>==", { desc = "Move line up (n)" })
-map("i", "<C-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move line down (i)" })
-map("i", "<C-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move line up (i)" })
-map("v", "<C-j>", ":m '>+1<cr>gv=gv", { desc = "Move line down (v)" })
-map("v", "<C-k>", ":m '<-2<cr>gv=gv", { desc = "Move line up (v)" })
+map("n", "<C-D-j>", "<cmd>m .+1<cr>==", { desc = "Move line down (n)" })
+map("n", "<C-D-k>", "<cmd>m .-2<cr>==", { desc = "Move line up (n)" })
+map("i", "<C-D-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move line down (i)" })
+map("i", "<C-D-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move line up (i)" })
+map("v", "<C-D-j>", ":m '>+1<cr>gv=gv", { desc = "Move line down (v)" })
+map("v", "<C-D-k>", ":m '<-2<cr>gv=gv", { desc = "Move line up (v)" })
 
 -- Comments
-map("i", "<D-/>", "<C-o>gcc", { remap = true, desc = "Line comment" })
+map("i", "<C-/>", "<C-o>gcc", { remap = true, desc = "Line comment" })
 map("i", "<C-p>", "<C-o>gcip", { remap = true, desc = "Paragraph comment" })
-map({ "n", "v" }, "<D-/>", "gcc", { remap = true, desc = "Line comment" })
-map({ "n", "v" }, "<D-p>", "gcip", { remap = true, desc = "Paragraph comment" })
+map({ "n", "v" }, "<C-/>", "gcc", { remap = true, desc = "Line comment" })
+map({ "n", "v" }, "<C-p>", "gcip", { remap = true, desc = "Paragraph comment" })
 
 -- buffers
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
@@ -83,10 +83,10 @@ map("n", "<leader>w", "<cmd>bd<cr>", { desc = "Delete buffer" })
 -- end, { desc = "Delete buffer" })
 
 -- Move to window using the <ctrl> <shift> hjkl keys
-map("n", "<C-M-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-map("n", "<C-M-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-map("n", "<C-M-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-map("n", "<C-M-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
 -- Resize window using <ctrl> <shift> arrow keys
 map("n", "<C-M-Up>", "<cmd>resize +12<cr>", { desc = "Increase Window Height" })
@@ -112,9 +112,9 @@ map("n", "<M-p>", "<cmd>cprev<CR>", { desc = "Previous quickfix" })
 -- ------------------------------------------------
 -- [[ Tools ]]
 -- ------------------------------------------------
-map("n", "<C-l><C-l>", "<cmd>Lazy<cr>", { desc = "Lazy" })
-map("n", "<C-m><C-m>", "<cmd>Mason<cr>", { desc = "Mason" })
-map("n", "<C-g><C-g>", "<cmd>Neogit<cr>", { desc = "Neo-git" })
+map("n", "<leader>tl", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>tm", "<cmd>Mason<cr>", { desc = "Mason" })
+map("n", "<leader>tg", "<cmd>Neogit<cr>", { desc = "Neo-git" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })

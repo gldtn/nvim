@@ -7,11 +7,11 @@ return {
     opts = { use_diagnostic_signs = true },
   },
   keys = {
-    { "<leader>td", "<cmd>Trouble diagnostics toggle<cr>", desc = "[D]iagnotics toggle" },
-    { "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[B]uffer diagnostics" },
-    { "<leader>tq", "<cmd>Trouble qflist toggle<cr>", desc = "[Q]uickfix list" },
-    { "<leader>tl", "<cmd>Trouble loclist toggle<cr>", desc = "[L]ocation list" },
-    { "<leader>ts", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "[S]ymbols" },
+    { "<leader>xd", "<cmd>Trouble diagnostics toggle<cr>", desc = "[D]iagnotics toggle" },
+    { "<leader>xb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "[B]uffer diagnostics" },
+    { "<leader>xq", "<cmd>Trouble qflist toggle<cr>", desc = "[Q]uickfix list" },
+    { "<leader>xl", "<cmd>Trouble loclist toggle<cr>", desc = "[L]ocation list" },
+    { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "[S]ymbols" },
     { "gR", "<cmd>Trouble lsp toggle focus=false win.postion=right<cr>", desc = "LSP definitions / references / ..." },
   },
 }

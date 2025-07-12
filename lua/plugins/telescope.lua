@@ -41,8 +41,9 @@ return {
     "natecraddock/telescope-zf-native.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
     "nvim-telescope/telescope-live-grep-args.nvim",
+    "andrew-george/telescope-themes",
     { "nvim-telescope/telescope-file-browser.nvim", dev = false },
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { "nvim-telescope/telescope-fzf-native.nvim" },
   },
     -- stylua: ignore
 	keys = {
@@ -249,17 +250,18 @@ return {
         },
       },
       ["ui-select"] = {
-        require("telescope.themes").get_dropdown({
-          layout_strategy = "cursor",
-          borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
-        }),
+        layout_strategy = "cursor",
+        borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
       },
     },
   },
   config = function(_, opts)
     require("telescope").setup(opts)
+    -- load extensions
+    require("telescope").load_extension("themes")
+    require("telescope").load_extension("ui-select")
+    require("telescope").load_extension("zf-native")
     -- add linenumbers to preview
     vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
-    require("telescope").load_extension("ui-select")
   end,
 }
