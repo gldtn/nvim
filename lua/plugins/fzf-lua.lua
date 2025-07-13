@@ -14,7 +14,7 @@ return {
     { "<leader>fl", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
     { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
     { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
-    { "<leader><leader>", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
+    { "<leader><leader>b", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
     { "<leader>fd", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles" },
     -- live_grep current buffer
     { "<leader>fb", function()

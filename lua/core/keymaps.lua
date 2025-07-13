@@ -101,7 +101,7 @@ map("n", "<leader>mm", "<cmd>Mark<cr>", { desc = "Mark file" })
 map("n", "<leader>mu", "<cmd>Unmark<cr>", { desc = "Unmark file" })
 
 -- Filesystem/Browser
--- map("n", "\\", "<cmd>Neotree toggle float<cr>", { desc = "Float file explorer" })
+map("n", "<leader><leader>", "<cmd>Neotree toggle float<cr>", { desc = "Float file explorer" })
 
 map("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source file" })
 

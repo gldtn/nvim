@@ -8,7 +8,7 @@ return {
   },
   lazy = true,
   cmd = { "Neotree" },
-  enabled = false,
+  enabled = true,
   init = function()
     vim.api.nvim_create_autocmd("BufEnter", {
       group = vim.api.nvim_create_augroup("load_neo_tree", {}),
@@ -36,14 +36,14 @@ return {
           -- Center the popup horizontally and vertically
           position = function()
             return {
-              col = math.floor((vim.o.columns - (vim.o.columns * 0.8)) / 2),
+              col = math.floor((vim.o.columns - (vim.o.columns * 0.4)) / 2),
               row = math.floor((vim.o.lines - (vim.o.lines * 0.8)) / 2),
             }
           end,
           size = function()
             -- Set the popup size to 80% of the window's width and height
             return {
-              width = math.floor(vim.o.columns * 0.8),
+              width = math.floor(vim.o.columns * 0.4),
               height = math.floor(vim.o.lines * 0.8),
             }
           end,
