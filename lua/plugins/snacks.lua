@@ -22,7 +22,7 @@ return {
       timeout = 3000,
     },
     explorer = {
-      enabled = true,
+      enabled = false,
       replace_netrw = true,
     },
     picker = {
