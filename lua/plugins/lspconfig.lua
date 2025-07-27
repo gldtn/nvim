@@ -96,6 +96,16 @@ return {
           },
         },
       },
+      cssls = {
+        settings = {
+          css = {
+            validate = false, -- Disables all built-in validation to ignore custom values like @peach
+            lint = {
+              unknownAtRules = "ignore", -- Suppresses warnings for unknown at-rules like @define-color
+            },
+          },
+        },
+      },
       sourcekit = {
         cmd = { "xcrun", "sourcekit-lsp" },
         capabilities = {

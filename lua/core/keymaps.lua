@@ -100,9 +100,6 @@ map("n", "<leader>mb", "<cmd>Track branches<cr>", { desc = "Track branches" })
 map("n", "<leader>mm", "<cmd>Mark<cr>", { desc = "Mark file" })
 map("n", "<leader>mu", "<cmd>Unmark<cr>", { desc = "Unmark file" })
 
--- Filesystem/Browser
-map("n", "<leader><leader>", "<cmd>Neotree toggle float<cr>", { desc = "Float file explorer" })
-
 map("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source file" })
 
 -- Quickfix
@@ -112,9 +109,9 @@ map("n", "<M-p>", "<cmd>cprev<CR>", { desc = "Previous quickfix" })
 -- ------------------------------------------------
 -- [[ Tools ]]
 -- ------------------------------------------------
-map("n", "<leader>tl", "<cmd>Lazy<cr>", { desc = "Lazy" })
-map("n", "<leader>tm", "<cmd>Mason<cr>", { desc = "Mason" })
-map("n", "<leader>tg", "<cmd>Neogit<cr>", { desc = "Neo-git" })
+map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>o", "<cmd>Mason<cr>", { desc = "Mason" })
+map("n", "<leader>.", "<cmd>Neogit<cr>", { desc = "Neo-git" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
