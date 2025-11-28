@@ -18,5 +18,5 @@ My personal Neovim configuration.
 
 ## About This Version
 
-I recently switched to Arch Linux, and this configuration is a complete refactor built around a more minimal, focused plugin set.
-The goal of this rebuild is to stay lightweight, fast, and clean-only the essentials, thoughtfully configured.
+This configuration is a complete refactor built around a more minimal, focused plugin set.
+The goal of this rebuild is to stay lightweight, fast, and clean. Only the essentials, thoughtfully configured.

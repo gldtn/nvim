@@ -30,6 +30,8 @@ return {
             "bashls",
             "yamlls",
             "phpactor",
+            "laravel-ls",
+            "tailwindcss",
             -- linter
             "eslint",
             -- formater
@@ -37,6 +39,7 @@ return {
             "pint",
             "stylua",
             "prettierd",
+            "blade-formatter",
           },
         },
       },
