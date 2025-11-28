@@ -40,7 +40,9 @@ _G.active_theme = saved_theme or "catppuccin" -- Fallback/Default theme
 -- Safe colorscheme setter (with persistence)
 ---------------------------------------------------------------------
 local function safe_colorscheme(name)
-  if pcall(vim.cmd, "colorscheme " .. name) then
+  if pcall(function()
+    vim.cmd("colorscheme " .. name)
+  end) then
     _G.active_theme = name
     save_last_theme(name)
   else
@@ -157,6 +159,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end
 
     local name = vim.g.colors_name or ""
+    ---@type string|table
     local theme = "auto"
 
     if name:find("catppuccin") then
