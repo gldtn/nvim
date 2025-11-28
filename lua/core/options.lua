@@ -45,7 +45,7 @@ local options = {
   clipboard = "unnamedplus", -- Synchronizes the system clipboard
   completeopt = "menuone,noselect", -- Completion options
   fillchars = { eob = " " }, -- Fill character at the end of the buffer
-  shell = "zsh", -- Set shell to zsh
+  -- shell = "zsh", -- Set shell to zsh
 
   -- Make cursor blink
   guicursor = {
@@ -59,6 +59,3 @@ local options = {
 for option, value in pairs(options) do
   vim.opt[option] = value
 end
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
