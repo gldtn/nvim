@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  event = { "BufRead", "BufNewFile", "BufWritePre" },
+  event = { "BufReadPre", "BufNewFile", "BufWritePre" },
   cmd = { "ConformInfo" },
   dependencies = {
     "rcarriga/nvim-notify",
@@ -11,19 +11,20 @@ return {
 
     conform.setup({
       formatters_by_ft = {
-        zls = { "zigfmt" },
         lua = { "stylua" },
         toml = { "taplo" },
         css = { "prettierd" },
+        scss = { "prettierd" },
         html = { "prettierd" },
         yaml = { "prettierd" },
         json = { "prettierd" },
-        swift = { "swift-format" },
         markdown = { "prettierd" },
         javascript = { "prettierd" },
         python = { "isort", "black" },
         blade = { "blade-formatter" },
-        php = { "pint", "php-cs-fixer" },
+        php = { "pint", "blade-formatter" },
+        sh = { "shfmt" },
+        bash = { "shfmt" },
       },
       notify_on_error = true,
       format_on_save = function(bufnr)

@@ -20,3 +20,5 @@ My personal Neovim configuration.
 
 This configuration is a complete refactor built around a more minimal, focused plugin set.
 The goal of this rebuild is to stay lightweight, fast, and clean. Only the essentials, thoughtfully configured.
+
+WIP..

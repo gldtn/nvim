@@ -2,15 +2,15 @@ local M = {}
 
 local p = require("catppuccin.palettes").get_palette("mocha")
 
-local t = { bg = "NONE" }
+local t = { bg = p.base }
 
 local function static_components()
   return {
     b = { fg = p.sky, bg = t.bg, gui = "bold" }, -- Git branch
     c = { fg = p.rosewater, bg = t.bg, gui = "bold" }, -- Filename
-    x = { fg = p.lavender, bg = t.bg, gui = "bold" }, -- LSP provider
+    x = { fg = p.blue, bg = t.bg }, -- LSP provider
     y = { fg = p.mauve, bg = t.bg, gui = "bold" }, -- Cursor location
-    z = { fg = p.pink, bg = t.bg, gui = "bold" }, -- Scroll progress
+    z = { fg = p.red, bg = t.bg, gui = "bold" }, -- Scroll progress
   }
 end
 

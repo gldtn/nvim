@@ -48,8 +48,8 @@ map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = false })
 
 -- tools
 map("n", "\\", ":Neotree toggle<cr>", { desc = "Toggle file tree" })
-map("n", "<leader>l", ":Lazy<cr>", { desc = "Lazy" })
-map("n", "<leader>m", ":Mason<cr>", { desc = "Mason" })
+map("n", "<leader>L", ":Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>M", ":Mason<cr>", { desc = "Mason" })
 
 map("n", "<leader>sf", ":source %<cr>", { desc = "Source config file" })
 

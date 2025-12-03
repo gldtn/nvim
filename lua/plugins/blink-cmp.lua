@@ -29,6 +29,8 @@ return {
       ["<Down>"] = { "hide", "fallback" },
       ["<Left>"] = { "hide", "fallback" },
       ["<Right>"] = { "hide", "fallback" },
+      ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-d>"] = { "scroll_documentation_down", "fallback" },
     },
 
     snippets = { preset = "luasnip" },

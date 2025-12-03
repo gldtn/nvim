@@ -44,6 +44,11 @@ M.on_highlights = function(hl, c)
 
     -- background overrides
     MasonNormal = { bg = primary.color2 },
+
+    -- LSP floats hover/signature help
+    RenderMarkdownCode = { bg = primary.color1 },
+    NormalFloat = { bg = primary.color1 },
+    LSPFloatBorder = { fg = neutral.color3, bg = primary.color1 },
   }
 
   -- Add extra highlights to the hl table

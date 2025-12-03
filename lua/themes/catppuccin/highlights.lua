@@ -37,7 +37,11 @@ M.setup = function(c)
     dashIcons = { fg = c.peach },
     DashboardHeader = { fg = c.subtext1 },
 
+    RenderMarkdownCode = { bg = primary.color1 },
+    LSPFloatBorder = { fg = neutral.color3, bg = primary.color1 },
+
     -- background overrides
+
     NormalFloat = { bg = primary.color1 },
     LazyNormal = { bg = primary.color2 },
     MasonNormal = { bg = primary.color2 },

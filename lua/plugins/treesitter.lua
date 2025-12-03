@@ -1,10 +1,9 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  branch = "master",
+  branch = "main",
   lazy = false,
   build = ":TSUpdate",
   event = { "BufReadPre", "BufNewFile" },
-  cmd = { "TSUpdateSync" },
   dependencies = {
     -- "nvim-treesitter/nvim-treesitter-textobjects",
     "windwp/nvim-ts-autotag",
@@ -12,9 +11,8 @@ return {
   opts = {
     highlight = {
       enable = true,
-      additional_vim_regex_highlighting = true,
+      additional_vim_regex_highlighting = false,
     },
-    indent = { enable = true },
     ensure_installed = {
       "c",
       "lua",
@@ -26,8 +24,10 @@ return {
       "yaml",
       "toml",
       "bash",
-      "swift",
+      "markdown",
+      "markdown_inline",
       -- web
+      "php",
       "css",
       "html",
       "scss",
@@ -38,28 +38,9 @@ return {
     ignore_install = {},
     auto_install = true,
     sync_install = false,
+    indent = { enable = true },
     autotag = { enable = true },
+    textobjects = { enable = true },
     incremental_selection = { enable = true },
   },
-  -- Setup tree-sitter-blade parser
-
-  --     pattern = {
-  --       [".*%.blade%.php"] = "blade",
-  --     },
-  --   })
-
-  --   ---@field install_info table Information for installing the parser.
-  --   ---@field filetype string Filetype this parser is associated with.
-  --   local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-  --
-  --   ---@type ParserConfig
-  --   parser_config.blade = {
-  --     install_info = {
-  --       url = "https://github.com/EmranMR/tree-sitter-blade",
-  --       files = { "src/parser.c" },
-  --       branch = "main",
-  --     },
-  --     filetype = "blade",
-  --   }
-  -- end,
 }
