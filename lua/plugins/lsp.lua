@@ -172,11 +172,15 @@ return {
 
           -- Apply settings to all servers
           for name, config in pairs(servers) do
+            -- inject cmp capabilities to blink if available
             local ok_cmp, cmp = pcall(require, "blink.cmp")
             if ok_cmp then
               config.capabilities = cmp.get_lsp_capabilities(config.capabilities)
             end
-
+            -- on_attach LSP keymaps
+            if not config.on_attach then
+              config.on_attach = on_attach
+            end
             vim.lsp.config(name, config)
           end
         end,
