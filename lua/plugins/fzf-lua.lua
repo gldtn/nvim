@@ -14,6 +14,7 @@ return {
     { "<leader>fl", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
     { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
     { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
+    { "<leader>rf", "<cmd>FzfLua resume<CR>", desc = "Resume Fzf-Lua" },
     { "<leader>nh", "<cmd>Noice fzf<CR>", desc = "Notification history" },
     { "bb", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
     { "<leader>fd", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles" },
@@ -33,64 +34,106 @@ return {
     { "<leader>gr", "<cmd>FzfLua lsp_references<CR>", desc = "LSP References" },
     { "<leader>gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "LSP Definitions" },
   },
-  opts = {
-    "default-title",
-    fzf_colors = true,
-    file_icon_padding = "",
-    winopts = {
-      width = 0.80,
-      height = 0.80,
-      backdrop = 25,
-      title_flags = false,
-      preview = {
-        horizontal = "right:75%",
-        border = { "▌", " ", " ", " ", " ", " ", "▌", "▌" },
+  config = function()
+    require("fzf-lua").register_ui_select() -- Register as UI select backend
+
+    local actions = require("fzf-lua.actions")
+    require("fzf-lua").setup({
+      keymap = {
+        builtin = {
+          ["`"] = "hide",
+          ["?"] = "toggle-help",
+          ["ctrl-p"] = "toggle-preview",
+          ["ctrl-f"] = "toggle-fullscreen",
+          ["ctrl-u"] = "preview-page-up",
+          ["ctrl-d"] = "preview-page-down",
+        },
+        fzf = {
+          ["ctrl-p"] = "toggle-preview",
+          ["ctrl-u"] = "preview-page-up",
+          ["ctrl-d"] = "preview-page-down",
+        },
       },
-    },
-    files = {
-      prompt = "   ",
-      cwd_prompt = false,
-      formatter = "path.filename_first",
-    },
-    grep = {
-      prompt = " 󰱼  ",
-      rg_glob = true,
-      glob_flag = "--iglob",
-      glob_separator = "%s%-%-",
-    },
-    buffers = {
-      prompt = "   ",
+      fzf_colors = true,
       winopts = {
-        width = 0.33,
-        height = 0.43,
+        width = 0.80,
+        height = 0.80,
         backdrop = 25,
-        preview = { hidden = "hidden" },
-      },
-    },
-    lsp = {
-      code_actions = {
-        prompt = "   ",
-        winopts = {
-          numbers = true,
-          width = 0.6,
-          height = 0.6,
-          backdrop = 25,
-          preview = {
-            horizontal = "down:75%",
-            vertical = "down:75%",
-            border = { "━", "━", "━", " ", " ", " ", " ", " " },
+        title_flags = false,
+        preview = {
+          horizontal = "right:75%",
+          scrollbar = "float",
+          border = { "▌", " ", " ", " ", " ", " ", "▌", "▌" },
+          winopts = {
+            number = true,
           },
         },
       },
-    },
-    oldfiles = { prompt = "   " },
-    helptags = { prompt = "   " },
-    manpages = { prompt = "   " },
-    highlights = { prompt = "   " },
-  },
-  config = function(_, opts)
-    require("fzf-lua").setup(opts)
-    -- Register as UI select backend
-    require("fzf-lua").register_ui_select()
+      files = {
+        prompt = "   ",
+        cwd_prompt = false,
+        formatter = "path.filename_first",
+        actions = {
+          ["ctrl-l"] = actions.file_vsplit,
+          ["ctrl-j"] = actions.file_split,
+        },
+      },
+      grep = {
+        prompt = " 󰱼  ",
+        rg_glob = true,
+        glob_flag = "--iglob",
+        glob_separator = "%s%-%-",
+      },
+      buffers = {
+        prompt = "   ",
+        winopts = {
+          width = 0.33,
+          height = 0.43,
+          backdrop = 25,
+          preview = { hidden = "hidden" },
+        },
+      },
+      lsp = {
+        code_actions = {
+          prompt = "   ",
+          winopts = {
+            numbers = true,
+            width = 0.6,
+            height = 0.6,
+            preview = {
+              horizontal = "down:75%",
+              vertical = "down:75%",
+              border = { "━", "━", "━", " ", " ", " ", " ", " " },
+            },
+          },
+        },
+      },
+      oldfiles = { prompt = "   " },
+      helptags = { prompt = "   " },
+      manpages = { prompt = "   " },
+      highlights = {
+        prompt = "   ",
+        -- cmd = "rg --column --line-number --no-heading --color=always --smart-case",
+        winopts = {
+          width = 1,
+          height = 0.3,
+          row = vim.o.lines - 2,
+        },
+      },
+    })
   end,
+  -- config = function(_, opts)
+  --   require("fzf-lua").setup(opts)
+  --   -- local actions = require("fzf-lua.actions")
+  --   -- require("fzf-lua").setup({
+  --   --   files = {
+  --   --     actions = {
+  --   --       ["ctrl-l"] = actions.file_vsplit,
+  --   --       ["ctrl-j"] = actions.file_split,
+  --   --     },
+  --   --   },
+  --   -- })
+  --
+  --   require("fzf-lua").register_ui_select() -- Register as UI select backend
+  -- end,
 }

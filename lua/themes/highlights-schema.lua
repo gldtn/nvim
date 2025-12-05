@@ -23,10 +23,13 @@ M.get_highlights = function(accent, neutral, primary, title)
     -- fzf-lua prompt details
     FzfLuaFzfQuery = { fg = neutral.color1 },
 
-    -- fzf-lua preview scrollbar
-    FzfLuaScrollFloatFull = { fg = primary.color4 },
-    FzfLuaScrollBorderFull = { fg = primary.color3 },
+    -- fzf-lua builtin preview scrollbar
+    FzfLuaScrollFloatFull = { bg = primary.color3 }, -- builtin preview (scrollbar)
+    FzfLuaScrollFloatEmpty = { bg = primary.color1 }, -- builtin preview (scrollbar bg)
+    -- FzfLuaFzfScrollbar = { bg = primary.color1 },
+    -- FzfLuaScrollbar = { bg = primary.color1 },
 
+    FzfLuaFzfSpinner = { fg = primary.color1 },
     -- fzf-lua results
     FzfLuaMarker = { fg = accent.fzf1 },
     FzfLuaFzfMatch = { fg = accent.fzf1 },
@@ -38,7 +41,7 @@ M.get_highlights = function(accent, neutral, primary, title)
     FzfLuaFzfPrompt = { fg = accent.fzf1, bg = primary.color2 },
     FzfLuaPreviewNormal = { fg = neutral.color1, bg = primary.color2 },
 
-    -- fzf-lua borders
+    -- fzf-lua borderqs
     FzfLuaBorder = { fg = primary.color2, bg = primary.color2 },
     FzfLuaFzfBorder = { fg = neutral.color3, bg = primary.color2 },
     FzfLuaFzfSeparator = { fg = neutral.color3, bg = primary.color2 }, -- prompt separator

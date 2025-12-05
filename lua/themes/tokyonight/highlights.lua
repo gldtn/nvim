@@ -5,9 +5,9 @@ local M = {}
 M.on_highlights = function(hl, c)
   -- theme colors
   local accent = {
-    color1 = c.blue,
-    color2 = c.cyan,
-    color3 = c.magenta,
+    fzf1 = c.blue,
+    fzf2 = c.cyan,
+    fzf3 = c.magenta,
   }
   local neutral = {
     color1 = c.fg,
