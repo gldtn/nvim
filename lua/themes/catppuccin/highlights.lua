@@ -2,7 +2,7 @@ local schema = require("themes.highlights-schema")
 
 local M = {}
 
-M.setup = function(c)
+M.custom_hl = function(c)
   local accent = {
     -- fzf colors
     fzf1 = c.blue,
@@ -25,7 +25,10 @@ M.setup = function(c)
     preview = { fg = primary.color1, bg = c.green },
   }
 
+  -- Call schema.setup to populate the highlights
   local schema_highlights = schema.get_highlights(accent, neutral, primary, title)
+
+  -- Define extra highlights
   local extra_highlights = {
     -- dashboard
     dashKey1 = { fg = c.blue },
@@ -39,15 +42,18 @@ M.setup = function(c)
 
     RenderMarkdownCode = { bg = primary.color1 },
     LSPFloatBorder = { fg = neutral.color3, bg = primary.color1 },
+    LazyGitBorder = { fg = neutral.color3, bg = primary.color1 },
 
     -- background overrides
-
     NormalFloat = { bg = primary.color1 },
     LazyNormal = { bg = primary.color2 },
     MasonNormal = { bg = primary.color2 },
     NeoTreeNormal = { bg = primary.color2 },
+    LazyGitBackdrop = { bg = primary.color1 },
     NeoTreeFloatNormal = { bg = primary.color1 },
-    SnacksBackdrop = { fg = primary.color1, bg = primary.color1 },
+    SnacksBackdrop = { bg = primary.color1 },
+    SnacksPicker = { bg = primary.color1 },
+    SnacksPickerBorder = { fg = primary.color3, bg = primary.color1 },
 
     -- blink.cmp
     BlinkCmpDoc = { bg = primary.color1 },

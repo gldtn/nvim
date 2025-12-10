@@ -13,8 +13,7 @@ return {
     { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live Grep" },
     { "<leader>fl", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
     { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
-    { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
-    { "<leader>rf", "<cmd>FzfLua resume<CR>", desc = "Resume Fzf-Lua" },
+    { "<leader>fR", "<cmd>FzfLua resume<CR>", desc = "Resume Fzf-Lua" },
     { "<leader>nh", "<cmd>Noice fzf<CR>", desc = "Notification history" },
     { "bb", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
     { "<leader>fd", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles" },
@@ -58,7 +57,7 @@ return {
       winopts = {
         width = 0.80,
         height = 0.80,
-        backdrop = 25,
+        backdrop = 6,
         title_flags = false,
         preview = {
           horizontal = "right:75%",

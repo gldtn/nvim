@@ -11,7 +11,6 @@ return {
   cmd = "Neogit",
     -- stylua: ignore
 		keys = {
-			{ "<c-g><c-g>", "<CMD>Neogit<CR>", desc = "Neogit" },
 			{ "<leader>gl", function() require("neogit").action("log", "log_current", { "--", vim.fn.expand("%") })() end, desc = "Git log for file", },
 			{ "<leader>gr", function()
         local file = vim.fn.expand("%") vim.cmd([[execute "normal! \<ESC>"]])

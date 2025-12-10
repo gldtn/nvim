@@ -1,47 +1,60 @@
 return {
   "folke/which-key.nvim",
-  dependencies = { "echasnovski/mini.icons", version = false },
   event = "VeryLazy",
   opts = {
-    title = true,
-    sort = "alphanum",
-    preset = "modern",
-    title_pos = "center",
+    preset = "helix",
+    delay = 300,
+    icons = {
+      rules = false,
+      breadcrumb = " ",
+      separator = "󱦰  ",
+      group = "󰹍 ",
+    },
+    plugins = {
+      spelling = {
+        enabled = false,
+      },
+    },
+
+    win = {
+      title = true,
+      title_pos = "center",
+      border = "rounded",
+    },
+
+    spec = {
+      -- groups for n + v modes
+      mode = { "n", "v" },
+      -- Every entry must be { prefix, opts }
+      { "<leader>b", group = "Buffer" },
+      { "<leader>c", group = "Code" },
+      { "<leader>f", group = "Find" },
+      { "<leader>g", group = "Goto" },
+      { "<leader>n", group = "Notifications" },
+      { "<leader>o", group = "Open" },
+      { "<leader>r", group = "Replace" },
+      { "<leader>s", group = "switch" },
+      { "<leader>t", group = "Toggle" },
+      { "<leader>x", group = "Trouble" },
+      { "<leader>q", group = "Quit" },
+      -- cmds
+      { "<leader>ol", "<cmd>Lazy<cr>", desc = "Lazy", icon = "󰒲" },
+      { "<leader>om", "<cmd>Mason<cr>", desc = "Mason", icon = "" },
+      { "<leader>on", "<cmd>Neogit<cr>", desc = "Neogit", icon = "" },
+    },
   },
 
-  config = function()
-    vim.o.timeout = true
-    vim.o.timeoutlen = 500
-
-    -- import which-key plugin
-    local wk = require("which-key")
-
-    -- define options
-    local keyopts = {
-      noremap = false,
-      nowait = false,
-    }
-
-    local c = "orange"
-
-    local mappings = {
-      { "<leader>b", group = "buffer/browser", icon = { icon = "", color = c } },
-      { "<leader>c", group = "code", icon = { icon = "󰅪", color = c } },
-      { "<leader>f", group = "find/files", icon = { icon = "󰍉", color = c } },
-      { "<leader>g", group = "goto", icon = { icon = "󰆤", color = c } },
-      { "<leader>L", "<cmd>Lazy<cr>", desc = "lazy", icon = { icon = "󰒲", color = c } },
-      { "<leader>M", "<cmd>Mason<cr>", desc = "mason", icon = { icon = "", color = c } },
-      { "<leader>n", group = "notifications", icon = { icon = "󰎟", color = c } },
-      { "<leader>r", group = "find/replace", icon = { icon = "󰛔", color = c } },
-      { "<leader>s", group = "switch", icon = { icon = "", color = c } },
-      { "<leader>T", group = "toggles", icon = { icon = "󰔡", color = c } },
-      { "<leader>x", group = "trouble", icon = { icon = "󱏚", color = c } },
-      { "<leader>q", group = "quit", icon = { icon = "󰈆", color = c } },
-      { "<leader>S", group = "treesitter", icon = { icon = "", color = c } },
-      { "<leader>Si", "<cmd>InspectTree<cr>", desc = "inspect tree", icon = { icon = "", color = c } },
-      { "<leader>Su", "<cmd>TSUpdate<cr>", desc = "update parsers", icon = { icon = "󰚰", color = c } },
-    }
-
-    wk.add({ mappings, keyopts })
-  end,
+  -- stylua: ignore
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Keymaps",
+    },
+  },
+  -- { "<leader>S", group = "treesitter", icon = { icon = "" } },
+  -- { "<leader>Si", "<cmd>InspectTree<cr>", desc = "inspect tree", icon = { icon = "" } },
+  -- { "<leader>Su", "<cmd>TSUpdate<cr>", desc = "update parsers", icon = { icon = "󰚰" } },
 }

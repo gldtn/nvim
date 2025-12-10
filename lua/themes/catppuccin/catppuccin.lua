@@ -23,7 +23,7 @@ M.setup = function()
     },
     color_overrides = {},
     custom_highlights = function(c)
-      return highlights.setup(c)
+      return highlights.custom_hl(c)
     end,
     default_integrations = true,
     integrations = {

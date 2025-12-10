@@ -17,18 +17,13 @@ return {
   config = function()
     -- Determine current theme for lualine
     local theme = "auto"
-    local current = vim.g.colors_name or _G.active_theme or ""
 
-    if current:find("catppuccin") then
-      local ok, catpp_theme = pcall(require, "themes.catppuccin.lualine-theme")
-      if ok and catpp_theme.theme then
-        theme = catpp_theme.theme
-      end
-    elseif current:find("tokyonight") then
-      local ok, tokyo_theme = pcall(require, "themes.tokyonight.lualine-theme")
-      if ok and tokyo_theme.theme then
-        theme = tokyo_theme.theme
-      end
+    local current = _G.active_theme or vim.g.colors_name or ""
+    local module = string.format("themes.%s.lualine-theme", current)
+
+    local ok, loaded = pcall(require, module)
+    if ok and loaded.theme then
+      theme = loaded.theme
     end
 
     -- Icons

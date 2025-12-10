@@ -1,7 +1,5 @@
--- themes/tokyonight/tokyonight.lua
-
 local M = {}
-local highlights = require("themes.tokyonight.highlights")
+local highlights = require("themes.tokyonight.highlights").custom_hl
 
 M.setup = function()
   require("tokyonight").setup({
@@ -16,12 +14,10 @@ M.setup = function()
       sidebars = "dark",
       floats = "dark",
     },
-    on_colors = function(colors) end,
-    on_highlights = highlights.on_highlights,
+    on_highlights = highlights,
     plugins = { auto = true },
   })
 
-  -- Apply colorscheme once
   -- vim.cmd("colorscheme tokyonight")
 end
 

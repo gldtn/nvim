@@ -1,12 +1,9 @@
 -- Add new themes here:
 --   ["name"] = { repo = "author/plugin", dev = false }
---
--- Note to self;
--- See Theme picker section to set ghostty theme names accordingly.
---
 local themes = {
   ["catppuccin"] = { repo = "catppuccin/nvim", dev = false },
   ["tokyonight"] = { repo = "folke/tokyonight.nvim", dev = false },
+  ["cyberdream"] = { repo = "scottmckendry/cyberdream.nvim", dev = false },
 }
 
 ---------------------------------------------------------------------
@@ -45,6 +42,9 @@ local function safe_colorscheme(name)
   end) then
     _G.active_theme = name
     save_last_theme(name)
+
+    -- 🔥 force-run ColorScheme again with the *new* theme value
+    vim.api.nvim_exec_autocmds("ColorScheme", {})
   else
     vim.notify("Theme '" .. name .. "' not found", vim.log.levels.WARN)
   end
@@ -61,18 +61,18 @@ local function set_ghostty_theme(name)
 
   local lines = vim.fn.readfile(path)
   local new = {}
-  local found = false
+  local replaced = false
 
   for _, line in ipairs(lines) do
     if line:match("^%s*theme%s*=") then
       table.insert(new, "theme = " .. name)
-      found = true
+      replaced = true
     else
       table.insert(new, line)
     end
   end
 
-  if not found then
+  if not replaced then
     table.insert(new, "theme = " .. name)
   end
 
@@ -126,14 +126,7 @@ vim.keymap.set("n", "<leader>st", function()
         end
 
         safe_colorscheme(name)
-
-        -- You'll need correct theme names here
-        -- From terminal run (ghostty +list-themes)
-        if name == "catppuccin" then
-          set_ghostty_theme("Catppuccin Mocha")
-        elseif name == "tokyonight" then
-          set_ghostty_theme("TokyoNight Night")
-        end
+        set_ghostty_theme(name)
       end,
     },
     winopts = {
@@ -158,16 +151,13 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       return
     end
 
-    local name = vim.g.colors_name or ""
-    ---@type string|table
+    -- Use the active theme directly
+    local name = _G.active_theme or "auto"
     local theme = "auto"
 
-    if name:find("catppuccin") then
-      local ok, mod = pcall(require, "themes.catppuccin.lualine-theme")
-      theme = ok and mod.theme or "auto"
-    elseif name:find("tokyonight") then
-      local ok, mod = pcall(require, "themes.tokyonight.lualine-theme")
-      theme = ok and mod.theme or "auto"
+    local ok, mod = pcall(require, "themes." .. name .. ".lualine-theme")
+    if ok and type(mod) == "table" and mod.theme then
+      theme = mod.theme
     end
 
     local cfg = vim.deepcopy(base)

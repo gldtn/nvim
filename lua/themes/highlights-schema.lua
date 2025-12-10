@@ -5,11 +5,11 @@ M.get_highlights = function(accent, neutral, primary, title)
     -- float defaults
     FloatTitle = title.float,
     PreviewTitle = title.preview,
-    LazyBackdrop = { bg = primary.color1, blend = 20 },
-    MasonBackdrop = { bg = primary.color1, blend = 20 },
-    NeotreeBackdrop = { bg = primary.color1, blend = 20 },
+    LazyBackdrop = { bg = primary.color1, blend = 6 },
+    MasonBackdrop = { bg = primary.color1, blend = 6 },
+    NeotreeBackdrop = { bg = primary.color1, blend = 6 },
+    SnacksBackdrop = { bg = primary.color1, blend = 6 },
     FloatBorder = { fg = primary.color2, bg = primary.color2 },
-    SnacksBackdrop = { fg = primary.color1, bg = primary.color1, blend = 20 },
 
     -- fzf-lua titles
     FzfLuaTitle = { link = "FloatTitle" },
@@ -29,7 +29,7 @@ M.get_highlights = function(accent, neutral, primary, title)
     -- FzfLuaFzfScrollbar = { bg = primary.color1 },
     -- FzfLuaScrollbar = { bg = primary.color1 },
 
-    FzfLuaFzfSpinner = { fg = primary.color1 },
+    -- FzfLuaSpinner = { fg = primary.color1 },
     -- fzf-lua results
     FzfLuaMarker = { fg = accent.fzf1 },
     FzfLuaFzfMatch = { fg = accent.fzf1 },
@@ -69,6 +69,10 @@ M.get_highlights = function(accent, neutral, primary, title)
     TelescopeBorder = { fg = primary.color2, bg = primary.color2 },
     TelescopePromptBorder = { fg = primary.color3, bg = primary.color3 },
     TelescopePreviewBorder = { fg = primary.color1, bg = primary.color2 },
+
+    -- whichkey
+    WhichKeyTitle = { link = "Comment" },
+    WhichKeyBorder = { link = "Comment" },
   }
 end
 

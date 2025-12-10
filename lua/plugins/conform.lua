@@ -75,7 +75,6 @@ return {
       require("conform").format({ async = true, lsp_fallback = true })
       vim.notify("Formatting complete!", vim.log.levels.INFO, { title = "Buffer Format" })
     end, { desc = "Format buffer" })
-    map("n", "<leader>Tf", toggle_autoformat, { desc = "Toggle autoformat-on-save" })
-    map("n", "<C-t><C-f>", toggle_autoformat, { desc = "Toggle autoformat-on-save" })
+    map("n", "<leader>tf", toggle_autoformat, { desc = "Toggle autoformat-on-save" })
   end,
 }

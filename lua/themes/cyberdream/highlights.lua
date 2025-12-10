@@ -2,26 +2,30 @@ local schema = require("themes.highlights-schema")
 
 local M = {}
 
-M.custom_hl = function(hl, c)
-  -- theme colors
+M.custom_hl = function(c)
+  local hl = {}
+
   local accent = {
+    -- fzf colors
     fzf1 = c.blue,
     fzf2 = c.cyan,
     fzf3 = c.magenta,
+    fzf4 = c.orange,
   }
   local neutral = {
     color1 = c.fg,
-    color2 = c.fg_dark,
-    color3 = c.comment,
+    color2 = c.grey,
+    color3 = c.bg_highlight,
   }
   local primary = {
     color1 = c.bg,
-    color2 = c.bg_dark,
+    color2 = c.bg_alt,
     color3 = c.bg_highlight,
+    color4 = c.bg_solid,
   }
   local title = {
-    float = { fg = primary.color1, bg = c.blue },
-    preview = { fg = primary.color1, bg = c.green },
+    float = { fg = primary.color4, bg = c.blue },
+    preview = { fg = primary.color4, bg = c.green },
   }
 
   -- Call schema.setup to populate the highlights
@@ -37,25 +41,27 @@ M.custom_hl = function(hl, c)
     dashKey5 = { fg = c.yellow },
     dashKey6 = { fg = c.red },
     dashIcons = { fg = c.orange },
-    DashboardHeader = { fg = c.comment },
+    DashboardHeader = { fg = c.grey },
 
-    -- neotree
+    -- general highlights
     NeoTreeFloatTitle = title.float,
+    BlinkCmpLabel = { fg = c.fg, bg = "NONE" },
 
     -- background overrides
+    NormalFloat = { bg = primary.color4 },
+    LazyNormal = { bg = primary.color2 },
     MasonNormal = { bg = primary.color2 },
+    NeoTreeNormal = { bg = primary.color2 },
+    NeoTreeFloatNormal = { bg = primary.color4 },
     SnacksBackdrop = { bg = primary.color1 },
-
-    -- LSP floats hover/signature help
-    RenderMarkdownCode = { bg = primary.color1 },
-    NormalFloat = { bg = primary.color1 },
-    LSPFloatBorder = { fg = neutral.color3, bg = primary.color1 },
   }
 
   -- Merge schema/extra hls
   for k, v in pairs(extra_highlights) do
     hl[k] = v
   end
+
+  return hl
 end
 
 return M

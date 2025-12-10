@@ -9,6 +9,9 @@ local map = require("core.utils").map
 map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map("n", "<C-b>", "<C-v>", { desc = "Enter Visual Block mode" })
 
+-- Clear search with <esc>
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
+
 -- Yank bindings
 -- map({ "n", "v" }, "p", '"_dP') -- don't yank on paste selection
 map("n", "x", '"_x', { noremap = true }) -- don't yank on single char delete
@@ -38,7 +41,6 @@ map("v", "<C-S-k>", ":m '<-2<cr>gv=gv", { desc = "Move line up (v)" })
 -- buffers
 map("n", "<S-l>", ":bnext<cr>", { desc = "Next Buffer" })
 map("n", "<S-h>", ":bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "<leader>bd", ":bd<cr>", { desc = "Delete buffer" })
 
 -- move to window using the <ctrl> <shift> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = false })
@@ -46,17 +48,12 @@ map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = false })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = false })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = false })
 
--- tools
-map("n", "\\", ":Neotree toggle<cr>", { desc = "Toggle file tree" })
-map("n", "<leader>L", ":Lazy<cr>", { desc = "Lazy" })
-map("n", "<leader>M", ":Mason<cr>", { desc = "Mason" })
-
 map("n", "<leader>sf", ":source %<cr>", { desc = "Source config file" })
 
 -- quit binds
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Exit nvim" })
-map("n", "<leader>qr", "<cmd>restart<cr>", { desc = "Restart nvim" })
-map("n", "<leader>qa", "<cmd>qa!<cr>", { desc = "Quit without saving" })
+map("n", "qq", "<cmd>qa<cr>", { desc = "Exit nvim" })
+map("n", "qr", "<cmd>restart<cr>", { desc = "Restart nvim" })
+map("n", "qa", "<cmd>qa!<cr>", { desc = "Quit without saving" })
 
 -- save file; notifications
 local save_desc = "Save file"

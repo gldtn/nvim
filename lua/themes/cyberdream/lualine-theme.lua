@@ -1,14 +1,14 @@
 local M = {}
 
-local p = require("tokyonight.colors").setup()
+local p = require("cyberdream.colors").default
 
 local t = { bg = p.bg }
 
 local function static_components()
   return {
-    b = { fg = p.blue, bg = t.bg, gui = "bold" }, -- Git branch
-    c = { fg = p.white, bg = t.bg, gui = "bold" }, -- Filename
-    x = { fg = p.comment, bg = t.bg, gui = "bold" }, -- LSP provider
+    b = { fg = p.cyan, bg = t.bg, gui = "bold" }, -- Git branch
+    c = { fg = p.fg, bg = t.bg, gui = "bold" }, -- Filename
+    x = { fg = p.grey, bg = t.bg, gui = "bold" }, -- LSP provider
     y = { fg = p.magenta, bg = t.bg, gui = "bold" }, -- Cursor location
     z = { fg = p.red, bg = t.bg, gui = "bold" }, -- Scroll progress
   }

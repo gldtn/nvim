@@ -37,6 +37,7 @@ local options = {
   -- status & tabline
   laststatus = 3, -- last window status line (3 = show always, only last window)
   showtabline = 0, -- show tabline (0 = hide)
+  cmdheight = 0, -- Command line height
 
   -- Misc settings
   mouse = "a", -- Enable mouse mode
