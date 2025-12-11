@@ -4,10 +4,9 @@ local M = {}
 
 M.custom_hl = function(c)
   local accent = {
-    -- fzf colors
-    fzf1 = c.blue,
-    fzf2 = c.sky,
-    fzf3 = c.mauve,
+    color1 = c.blue,
+    color2 = c.sky,
+    color3 = c.mauve,
   }
   local neutral = {
     color1 = c.text,
@@ -40,17 +39,17 @@ M.custom_hl = function(c)
     dashIcons = { fg = c.peach },
     DashboardHeader = { fg = c.subtext1 },
 
+    -- LSP floats hover/signature help
     RenderMarkdownCode = { bg = primary.color1 },
     LSPFloatBorder = { fg = neutral.color3, bg = primary.color1 },
-    LazyGitBorder = { fg = neutral.color3, bg = primary.color1 },
 
     -- background overrides
     NormalFloat = { bg = primary.color1 },
     LazyNormal = { bg = primary.color2 },
     MasonNormal = { bg = primary.color2 },
-    NeoTreeNormal = { bg = primary.color2 },
-    LazyGitBackdrop = { bg = primary.color1 },
-    NeoTreeFloatNormal = { bg = primary.color1 },
+
+    -- snacks
+    SnacksIndentScope = { fg = accent.color1 },
     SnacksBackdrop = { bg = primary.color1 },
     SnacksPicker = { bg = primary.color1 },
     SnacksPickerBorder = { fg = primary.color3, bg = primary.color1 },

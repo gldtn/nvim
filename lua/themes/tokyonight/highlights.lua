@@ -5,9 +5,9 @@ local M = {}
 M.custom_hl = function(hl, c)
   -- theme colors
   local accent = {
-    fzf1 = c.blue,
-    fzf2 = c.cyan,
-    fzf3 = c.magenta,
+    color1 = c.blue,
+    color2 = c.cyan,
+    color3 = c.magenta,
   }
   local neutral = {
     color1 = c.fg,
@@ -39,17 +39,20 @@ M.custom_hl = function(hl, c)
     dashIcons = { fg = c.orange },
     DashboardHeader = { fg = c.comment },
 
-    -- neotree
-    NeoTreeFloatTitle = title.float,
-
-    -- background overrides
-    MasonNormal = { bg = primary.color2 },
-    SnacksBackdrop = { bg = primary.color1 },
-
     -- LSP floats hover/signature help
     RenderMarkdownCode = { bg = primary.color1 },
-    NormalFloat = { bg = primary.color1 },
     LSPFloatBorder = { fg = neutral.color3, bg = primary.color1 },
+
+    -- background overrides
+    NormalFloat = { bg = primary.color1 },
+    LazyNormal = { bg = primary.color1 },
+    MasonNormal = { bg = primary.color2 },
+
+    -- snacks
+    SnacksIndentScope = { fg = accent.color1 },
+    SnacksBackdrop = { bg = primary.color1 },
+    SnacksPicker = { bg = primary.color1 },
+    SnacksPickerBorder = { fg = primary.color3, bg = primary.color1 },
   }
 
   -- Merge schema/extra hls

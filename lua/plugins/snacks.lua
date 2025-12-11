@@ -20,7 +20,6 @@ return {
     input = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },
-    indent = { enabled = true },
     bigfile = { enabled = true },
     animate = { enabled = true },
     explorer = { enabled = true },
@@ -62,6 +61,14 @@ return {
         wo = { wrap = true }, -- Wrap notifications
       },
     },
+    indent = {
+      enabled = true,
+      style = "up_down",
+      duration = {
+        step = 50, -- ms per step
+        total = 600, -- maximum duration
+      },
+    },
   },
   config = function(_, opts)
     local Snacks = require("snacks")
@@ -82,7 +89,7 @@ return {
         win = {
           backdrop = {
             bg = bg,
-            blend = 10,
+            blend = 3,
             transparent = true, -- Set to true for blend to apply as overlay opacity
           },
         },

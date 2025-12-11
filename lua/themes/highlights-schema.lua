@@ -16,7 +16,7 @@ M.get_highlights = function(accent, neutral, primary, title)
     FzfLuaPreviewTitle = { link = "PreviewTitle" },
 
     -- fzf-lua headers
-    FzfLuaHeaderBind = { fg = accent.fzf3 },
+    FzfLuaHeaderBind = { fg = accent.color3 },
     FzfLuaFzfHeader = { fg = neutral.color3 },
     FzfLuaHeaderText = { fg = neutral.color3 },
 
@@ -31,8 +31,8 @@ M.get_highlights = function(accent, neutral, primary, title)
 
     -- FzfLuaSpinner = { fg = primary.color1 },
     -- fzf-lua results
-    FzfLuaMarker = { fg = accent.fzf1 },
-    FzfLuaFzfMatch = { fg = accent.fzf1 },
+    FzfLuaMarker = { fg = accent.color1 },
+    FzfLuaFzfMatch = { fg = accent.color1 },
     FzfLuaFzfPointer = { fg = primary.color3 },
 
     -- fzf-lua backgrounds
@@ -53,13 +53,13 @@ M.get_highlights = function(accent, neutral, primary, title)
     TelescopePreviewTitle = { link = "PreviewTitle" },
 
     -- telescope prompt details
-    TelescopePromptPrefix = { fg = accent.fzf1 },
-    TelescopePromptCounter = { fg = accent.fzf2 },
+    TelescopePromptPrefix = { fg = accent.color1 },
+    TelescopePromptCounter = { fg = accent.color2 },
 
     -- telescope prompt behaviors
-    TelescopeMatching = { fg = accent.fzf2 },
+    TelescopeMatching = { fg = accent.color2 },
     TelescopeSelection = { fg = neutral.color1, bg = primary.color3 },
-    TelescopeMultiSelection = { fg = accent.ff1, bg = primary.color3 },
+    TelescopeMultiSelection = { fg = accent.color1, bg = primary.color3 },
 
     -- telescope backgrounds
     TelescopeNormal = { fg = neutral.color1, bg = primary.color2 },

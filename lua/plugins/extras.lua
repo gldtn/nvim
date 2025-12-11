@@ -27,20 +27,6 @@ return {
       },
     },
   },
-  { -- indentation guides
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      scope = { enabled = false },
-      indent = { char = "│" },
-      exclude = {
-        filetypes = {
-          "dashboard",
-        },
-      },
-    },
-  },
   { -- autopair characters support
     "windwp/nvim-autopairs",
     event = "InsertEnter",

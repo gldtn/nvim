@@ -6,11 +6,10 @@ M.custom_hl = function(c)
   local hl = {}
 
   local accent = {
-    -- fzf colors
-    fzf1 = c.blue,
-    fzf2 = c.cyan,
-    fzf3 = c.magenta,
-    fzf4 = c.orange,
+    color1 = c.blue,
+    color2 = c.cyan,
+    color3 = c.magenta,
+    color4 = c.orange,
   }
   local neutral = {
     color1 = c.fg,
@@ -44,16 +43,22 @@ M.custom_hl = function(c)
     DashboardHeader = { fg = c.grey },
 
     -- general highlights
-    NeoTreeFloatTitle = title.float,
     BlinkCmpLabel = { fg = c.fg, bg = "NONE" },
 
+    -- LSP floats hover/signature help
+    RenderMarkdownCode = { bg = primary.color1 },
+    LSPFloatBorder = { fg = neutral.color3, bg = primary.color1 },
+
     -- background overrides
-    NormalFloat = { bg = primary.color4 },
+    NormalFloat = { bg = primary.color1 },
     LazyNormal = { bg = primary.color2 },
     MasonNormal = { bg = primary.color2 },
-    NeoTreeNormal = { bg = primary.color2 },
-    NeoTreeFloatNormal = { bg = primary.color4 },
+
+    -- snacks
+    SnacksIndentScope = { fg = accent.color1 },
     SnacksBackdrop = { bg = primary.color1 },
+    SnacksPicker = { bg = primary.color1 },
+    SnacksPickerBorder = { fg = primary.color3, bg = primary.color1 },
   }
 
   -- Merge schema/extra hls
