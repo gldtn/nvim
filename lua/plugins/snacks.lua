@@ -10,6 +10,7 @@ return {
     { "<leader>og", function() Snacks.lazygit() end, desc = "Lazygit" },
     { "<C-g>", function() Snacks.lazygit() end, desc = "Lazygit" },
     -- others
+    { "<c-s-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
     { "<C-S-x>", "<cmd>bdelete<cr>", desc = "Delete Buffer" },
     { "<C-x>", function() Snacks.bufdelete() end, desc = "Delete Buffer (Smart)" },
     { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
@@ -22,6 +23,7 @@ return {
     scroll = { enabled = true },
     bigfile = { enabled = true },
     animate = { enabled = true },
+    terminal = { enabled = true },
     explorer = { enabled = true },
     picker = {
       sources = {
@@ -82,7 +84,7 @@ return {
       return string.format("#%06x", bg)
     end
 
-    local function fix_lazygit_backdrop()
+    local function apply_lazygit_backdrop()
       local bg = get_backdrop_color()
 
       Snacks.config.lazygit = vim.tbl_deep_extend("force", Snacks.config.lazygit or {}, {
@@ -96,10 +98,10 @@ return {
       })
     end
 
-    fix_lazygit_backdrop()
+    apply_lazygit_backdrop()
 
     vim.api.nvim_create_autocmd("ColorScheme", {
-      callback = fix_lazygit_backdrop,
+      callback = apply_lazygit_backdrop,
     })
 
     Snacks.setup(opts)

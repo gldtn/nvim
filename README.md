@@ -26,5 +26,3 @@ Forever WIP ⚒️
 ## About This Version
 
 The goal of this setup is to stay lightweight, fast, and clean. Use only essentials plugins.
-
-Always a WIP..
