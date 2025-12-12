@@ -33,8 +33,9 @@ return {
       { "<leader>n", group = "Notifications" },
       { "<leader>o", group = "Open" },
       { "<leader>r", group = "Replace" },
-      { "<leader>s", group = "switch" },
+      { "<leader>s", group = "Search" },
       { "<leader>t", group = "Toggle" },
+      { "<leader>u", group = "UI" },
       { "<leader>x", group = "Trouble" },
       { "<leader>q", group = "Quit" },
       -- cmds

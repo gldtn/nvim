@@ -107,7 +107,7 @@ end
 ---------------------------------------------------------------------
 -- Theme picker (updates Neovim + Ghostty)
 ---------------------------------------------------------------------
-vim.keymap.set("n", "<leader>st", function()
+vim.keymap.set("n", "<leader>uc", function()
   local ok, fzf = pcall(require, "fzf-lua")
   if not ok then
     return
@@ -134,7 +134,7 @@ vim.keymap.set("n", "<leader>st", function()
       width = 0.33,
     },
   })
-end, { desc = "Switch theme (Neovim + Ghostty)" })
+end, { desc = "Colorscheme (Neovim + Ghostty)" })
 
 ---------------------------------------------------------------------
 -- Lualine auto-update on ColorScheme

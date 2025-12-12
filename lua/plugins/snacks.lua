@@ -9,6 +9,15 @@ return {
     -- git
     { "<leader>og", function() Snacks.lazygit() end, desc = "Lazygit" },
     { "<C-g>", function() Snacks.lazygit() end, desc = "Lazygit" },
+    -- search
+    { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+    { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
+    { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
+    { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
+    { "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
+    { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+    { "<leader>sp", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
+    { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
     -- others
     { "<c-s-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
     { "<C-S-x>", "<cmd>bdelete<cr>", desc = "Delete Buffer" },
@@ -74,7 +83,8 @@ return {
   },
   config = function(_, opts)
     local Snacks = require("snacks")
-
+    -- Function to get the current NormalFloat background color
+    -- Snacks defaults to black when `win` opens, always overriding colorscheme
     local function get_backdrop_color()
       local hl = vim.api.nvim_get_hl(0, { name = "NormalFloat", link = false })
       local bg = hl.bg or vim.api.nvim_get_hl(0, { name = "Normal", link = false }).bg
@@ -84,24 +94,22 @@ return {
       return string.format("#%06x", bg)
     end
 
-    local function apply_lazygit_backdrop()
+    local function apply_backdrop()
       local bg = get_backdrop_color()
 
-      Snacks.config.lazygit = vim.tbl_deep_extend("force", Snacks.config.lazygit or {}, {
-        win = {
-          backdrop = {
-            bg = bg,
-            blend = 3,
-            transparent = true, -- Set to true for blend to apply as overlay opacity
-          },
+      Snacks.config.win = vim.tbl_deep_extend("force", Snacks.config.win or {}, {
+        backdrop = {
+          bg = bg,
+          blend = 6,
+          transparent = true, -- Set to true for blend to apply as overlay opacity
         },
       })
     end
 
-    apply_lazygit_backdrop()
+    apply_backdrop()
 
     vim.api.nvim_create_autocmd("ColorScheme", {
-      callback = apply_lazygit_backdrop,
+      callback = apply_backdrop,
     })
 
     Snacks.setup(opts)

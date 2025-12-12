@@ -48,7 +48,7 @@ map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = false })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = false })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = false })
 
-map("n", "<leader>sf", ":source %<cr>", { desc = "Source config file" })
+map("n", "<leader>cs", ":source %<cr>", { desc = "Source current file" })
 
 -- quit binds
 map("n", "qq", "<cmd>qa<cr>", { desc = "Exit nvim" })
