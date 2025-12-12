@@ -1,16 +1,16 @@
 # gldtn/nvim
 
 My personal Neovim configuration.
-Forever WIP ⚒️
+Always a WIP ⚒️..
 
 ## Features
 
 - lazy.nvim package manager
-- snacks.nvim collection of small QoL plugins for Neovim.
-- LSP config w/mason, mason-tool-installer, nvim-lspconfig
 - conform formatting
 - lualine statusline
 - fzf-lua for fuzzy finding
+- snacks.nvim collection of small QoL plugins for Neovim.
+- LSP config w/mason, mason-tool-installer, nvim-lspconfig
 
 ## Themes
 
