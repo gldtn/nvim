@@ -3,29 +3,33 @@ local schema = require("themes.highlights-schema")
 local M = {}
 
 M.custom_hl = function(hl, c)
-  -- theme colors
   local accent = {
-    color1 = c.blue,
-    color2 = c.cyan,
-    color3 = c.magenta,
+    ac1 = c.blue,
+    ac2 = c.cyan,
+    ac3 = c.magenta,
   }
   local neutral = {
-    color1 = c.fg,
-    color2 = c.fg_dark,
-    color3 = c.comment,
+    nc1 = c.fg,
+    nc2 = c.fg_dark,
+    nc3 = c.comment,
   }
-  local primary = {
-    color1 = c.bg,
-    color2 = c.bg_dark,
-    color3 = c.bg_highlight,
+  local muted = {
+    mc1 = c.bg_float,
+    mc2 = c.bg_highlight,
+    mc3 = c.terminal_black,
+  }
+  local bg = {
+    bc1 = c.bg,
+    bc2 = c.bg_dark,
+    bc3 = c.bg_highlight,
   }
   local title = {
-    float = { fg = primary.color1, bg = c.blue },
-    preview = { fg = primary.color1, bg = c.green },
+    float = { fg = bg.bc1, bg = c.blue },
+    preview = { fg = bg.bc1, bg = c.green },
   }
 
   -- Call schema.setup to populate the highlights
-  schema.setup(hl, accent, neutral, primary, title)
+  schema.setup(hl, accent, neutral, muted, bg, title)
 
   -- Define extra highlights
   local extra_highlights = {
@@ -40,19 +44,8 @@ M.custom_hl = function(hl, c)
     DashboardHeader = { fg = c.comment },
 
     -- LSP floats hover/signature help
-    RenderMarkdownCode = { bg = primary.color1 },
-    LSPFloatBorder = { fg = neutral.color3, bg = primary.color1 },
-
-    -- background overrides
-    NormalFloat = { bg = primary.color1 },
-    LazyNormal = { bg = primary.color1 },
-    MasonNormal = { bg = primary.color2 },
-
-    -- snacks
-    SnacksIndentScope = { fg = accent.color1 },
-    SnacksBackdrop = { bg = primary.color1 },
-    SnacksPicker = { bg = primary.color1 },
-    SnacksPickerBorder = { fg = primary.color3, bg = primary.color1 },
+    RenderMarkdownCode = { bg = bg.bc1 },
+    LSPFloatBorder = { fg = neutral.nc3, bg = bg.bc1 },
   }
 
   -- Merge schema/extra hls

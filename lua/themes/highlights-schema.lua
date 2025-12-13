@@ -1,74 +1,93 @@
 local M = {}
 
-M.get_highlights = function(accent, neutral, primary, title)
+M.get_highlights = function(accent, neutral, muted, bg, title)
+  -- backdrop blend level
+  local blend = 6
+
   return {
-    -- float defaults
+    -- float titles
     FloatTitle = title.float,
     PreviewTitle = title.preview,
-    LazyBackdrop = { bg = primary.color1, blend = 6 },
-    MasonBackdrop = { bg = primary.color1, blend = 6 },
-    NeotreeBackdrop = { bg = primary.color1, blend = 6 },
-    SnacksBackdrop = { bg = primary.color1, blend = 6 },
-    FloatBorder = { fg = primary.color2, bg = primary.color2 },
+
+    -- float background overrides
+    NormalFloat = { bg = bg.bc2 },
+    LazyNormal = { bg = bg.bc2 },
+    MasonNormal = { bg = bg.bc2 },
+    SnacksNormal = { bg = bg.bc1 },
+    FloatBorder = { fg = bg.bc2, bg = bg.bc2 }, -- for borderless floats
+
+    -- float backdrops
+    LazyBackdrop = { bg = bg.bc1, blend = blend },
+    MasonBackdrop = { bg = bg.bc1, blend = blend },
+    FzfLuaBackdrop = { bg = bg.bc1, blend = blend },
+    SnacksBackdrop = { bg = bg.bc1 }, -- see snacks config for blend
+
+    -- fzf-lua titles
+    SnacksPickerTitle = { link = "FloatTitle" },
+    SnacksPickerPreviewTitle = { link = "PreviewTitle" },
+
+    -- snacks pickers
+    SnacksPicker = { bg = bg.bc1 },
+    SnacksPickerBorder = { fg = muted.mc1, bg = bg.bc1 },
+
+    -- snacks ident-scope
+    SnacksIndent = { fg = muted.mc1 },
+    SnacksIndentScope = { fg = muted.mc2 },
 
     -- fzf-lua titles
     FzfLuaTitle = { link = "FloatTitle" },
     FzfLuaPreviewTitle = { link = "PreviewTitle" },
 
     -- fzf-lua headers
-    FzfLuaHeaderBind = { fg = accent.color3 },
-    FzfLuaFzfHeader = { fg = neutral.color3 },
-    FzfLuaHeaderText = { fg = neutral.color3 },
+    FzfLuaHeaderBind = { fg = accent.ac3 },
+    FzfLuaFzfHeader = { fg = neutral.nc3 },
+    FzfLuaHeaderText = { fg = neutral.nc3 },
 
     -- fzf-lua prompt details
-    FzfLuaFzfQuery = { fg = neutral.color1 },
+    FzfLuaFzfQuery = { fg = neutral.nc1 },
 
     -- fzf-lua builtin preview scrollbar
-    FzfLuaScrollFloatFull = { bg = primary.color3 }, -- builtin preview (scrollbar)
-    FzfLuaScrollFloatEmpty = { bg = primary.color1 }, -- builtin preview (scrollbar bg)
-    -- FzfLuaFzfScrollbar = { bg = primary.color1 },
-    -- FzfLuaScrollbar = { bg = primary.color1 },
+    FzfLuaScrollFloatFull = { bg = muted.mc1 }, -- builtin preview (scrollbar)
+    FzfLuaScrollFloatEmpty = { bg = bg.bc1 }, -- builtin preview (scrollbar bg)
 
-    -- FzfLuaSpinner = { fg = primary.color1 },
     -- fzf-lua results
-    FzfLuaMarker = { fg = accent.color1 },
-    FzfLuaFzfMatch = { fg = accent.color1 },
-    FzfLuaFzfPointer = { fg = primary.color3 },
+    FzfLuaMarker = { fg = accent.ac1 },
+    FzfLuaFzfMatch = { fg = accent.ac1 },
+    FzfLuaFzfPointer = { fg = muted.mc1 },
 
     -- fzf-lua backgrounds
-    FzfLuaBackdrop = { bg = primary.color1 },
-    FzfLuaNormal = { fg = neutral.color1, bg = primary.color2 },
-    FzfLuaFzfPrompt = { fg = accent.fzf1, bg = primary.color2 },
-    FzfLuaPreviewNormal = { fg = neutral.color1, bg = primary.color2 },
+    FzfLuaNormal = { fg = neutral.nc1, bg = bg.bc2 },
+    FzfLuaFzfPrompt = { fg = accent.ac1, bg = bg.bc2 },
+    FzfLuaPreviewNormal = { fg = neutral.nc1, bg = bg.bc2 },
 
-    -- fzf-lua borderqs
-    FzfLuaBorder = { fg = primary.color2, bg = primary.color2 },
-    FzfLuaFzfBorder = { fg = neutral.color3, bg = primary.color2 },
-    FzfLuaFzfSeparator = { fg = neutral.color3, bg = primary.color2 }, -- prompt separator
-    FzfLuaPreviewBorder = { fg = primary.color1, bg = primary.color2 }, -- preview separator
+    -- fzf-lua borders
+    FzfLuaBorder = { fg = bg.bc2, bg = bg.bc2 },
+    FzfLuaFzfBorder = { fg = neutral.nc3, bg = bg.bc2 },
+    FzfLuaFzfSeparator = { fg = neutral.nc3, bg = bg.bc2 }, -- prompt separator
+    FzfLuaPreviewBorder = { fg = bg.bc1, bg = bg.bc2 }, -- preview separator
 
     -- telescope titles
-    TelescopeTitle = { fg = accent.fzf1 },
+    TelescopeTitle = { fg = accent.ac1 },
     TelescopePromptTitle = { link = "FloatTitle" },
     TelescopePreviewTitle = { link = "PreviewTitle" },
 
     -- telescope prompt details
-    TelescopePromptPrefix = { fg = accent.color1 },
-    TelescopePromptCounter = { fg = accent.color2 },
+    TelescopePromptPrefix = { fg = accent.ac1 },
+    TelescopePromptCounter = { fg = accent.ac2 },
 
     -- telescope prompt behaviors
-    TelescopeMatching = { fg = accent.color2 },
-    TelescopeSelection = { fg = neutral.color1, bg = primary.color3 },
-    TelescopeMultiSelection = { fg = accent.color1, bg = primary.color3 },
+    TelescopeMatching = { fg = accent.ac2 },
+    TelescopeSelection = { fg = neutral.nc1, bg = muted.mc1 },
+    TelescopeMultiSelection = { fg = accent.ac1, bg = muted.mc1 },
 
     -- telescope backgrounds
-    TelescopeNormal = { fg = neutral.color1, bg = primary.color2 },
-    TelescopePromptNormal = { fg = neutral.color1, bg = primary.color3 },
+    TelescopeNormal = { fg = neutral.nc1, bg = bg.bc2 },
+    TelescopePromptNormal = { fg = neutral.nc1, bg = muted.mc1 },
 
     -- telescope borders
-    TelescopeBorder = { fg = primary.color2, bg = primary.color2 },
-    TelescopePromptBorder = { fg = primary.color3, bg = primary.color3 },
-    TelescopePreviewBorder = { fg = primary.color1, bg = primary.color2 },
+    TelescopeBorder = { fg = bg.bc2, bg = bg.bc2 },
+    TelescopePromptBorder = { fg = muted.mc1, bg = muted.mc1 },
+    TelescopePreviewBorder = { fg = bg.bc1, bg = bg.bc2 },
 
     -- whichkey
     WhichKeyTitle = { link = "Comment" },
@@ -76,9 +95,9 @@ M.get_highlights = function(accent, neutral, primary, title)
   }
 end
 
-M.setup = function(hl, accent, neutral, primary, title)
+M.setup = function(hl, accent, neutral, primary, muted, title)
   -- Set the highlights using hl
-  local highlights = M.get_highlights(accent, neutral, primary, title)
+  local highlights = M.get_highlights(accent, neutral, primary, muted, title)
 
   -- Apply the highlights to hl (the highlight table provided by tokyonight)
   for group, settings in pairs(highlights) do

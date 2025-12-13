@@ -6,29 +6,39 @@ M.custom_hl = function(c)
   local hl = {}
 
   local accent = {
-    color1 = c.blue,
-    color2 = c.cyan,
-    color3 = c.magenta,
-    color4 = c.orange,
+    ac1 = c.blue,
+    ac2 = c.cyan,
+    ac3 = c.magenta,
+    -- not to be used in schema, only for extra highlights
+    ac4 = c.orange,
   }
   local neutral = {
-    color1 = c.fg,
-    color2 = c.grey,
-    color3 = c.bg_highlight,
+    nc1 = c.fg,
+    nc2 = c.grey,
+    nc3 = c.bg_highlight,
   }
-  local primary = {
-    color1 = c.bg,
-    color2 = c.bg_alt,
-    color3 = c.bg_highlight,
-    color4 = c.bg_solid,
+  local muted = {
+    mc1 = c.bg_alt,
+    mc2 = c.bg_highlight,
+    mc3 = c.grey,
+    -- not to be used in schema, only for extra highlights
+    mc4 = c.mantle,
+    mc5 = c.crust,
+  }
+  local bg = {
+    bc1 = c.bg,
+    bc2 = c.bg_alt,
+    bc3 = c.bg_highlight,
+    -- not to be used in schema, only for extra highlights
+    bc4 = c.bg_solid,
   }
   local title = {
-    float = { fg = primary.color4, bg = c.blue },
-    preview = { fg = primary.color4, bg = c.green },
+    float = { fg = bg.bc4, bg = c.blue },
+    preview = { fg = bg.bc4, bg = c.green },
   }
 
   -- Call schema.setup to populate the highlights
-  schema.setup(hl, accent, neutral, primary, title)
+  schema.setup(hl, accent, neutral, muted, bg, title)
 
   -- Define extra highlights
   local extra_highlights = {
@@ -46,19 +56,8 @@ M.custom_hl = function(c)
     BlinkCmpLabel = { fg = c.fg, bg = "NONE" },
 
     -- LSP floats hover/signature help
-    RenderMarkdownCode = { bg = primary.color1 },
-    LSPFloatBorder = { fg = neutral.color3, bg = primary.color1 },
-
-    -- background overrides
-    NormalFloat = { bg = primary.color1 },
-    LazyNormal = { bg = primary.color2 },
-    MasonNormal = { bg = primary.color2 },
-
-    -- snacks
-    SnacksIndentScope = { fg = accent.color1 },
-    SnacksBackdrop = { bg = primary.color1 },
-    SnacksPicker = { bg = primary.color1 },
-    SnacksPickerBorder = { fg = primary.color3, bg = primary.color1 },
+    RenderMarkdownCode = { bg = bg.bc1 },
+    LSPFloatBorder = { fg = neutral.nc3, bg = bg.bc1 },
   }
 
   -- Merge schema/extra hls

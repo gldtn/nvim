@@ -11,6 +11,8 @@ map("n", "<C-b>", "<C-v>", { desc = "Enter Visual Block mode" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
+map("n", "<leader>sr", [[:%s/<Right>]], { desc = "Start search and replace" })
+map("n", "<leader>sw", ":%s/<C-R><C-W>/", { desc = "Search and replace with word under cursor" })
 
 -- Yank bindings
 -- map({ "n", "v" }, "p", '"_dP') -- don't yank on paste selection

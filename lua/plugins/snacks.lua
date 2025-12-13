@@ -35,7 +35,32 @@ return {
     terminal = { enabled = true },
     explorer = { enabled = true },
     picker = {
+      prompt = "   ",
+      formatters = {
+        file = {
+          filename_first = true,
+        },
+      },
+      layouts = {
+        default = {
+          layout = {
+            box = "horizontal",
+            width = 0.8,
+            min_width = 120,
+            height = 0.8,
+            {
+              box = "vertical",
+              border = true,
+              title = "{title} {live} {flags}",
+              { win = "input", height = 1, border = "bottom" },
+              { win = "list", border = "none" },
+            },
+            { win = "preview", title = "{preview}", border = true, width = 0.75 },
+          },
+        },
+      },
       sources = {
+        files = {},
         explorer = {
           hidden = true,
           auto_close = true,
@@ -64,7 +89,6 @@ return {
       enabled = true,
       level = vim.log.levels.INFO, -- Hide low-level spam
       timeout = 4000,
-      style = "compact",
       top_down = false,
     },
     styles = {
@@ -86,7 +110,7 @@ return {
     -- Function to get the current NormalFloat background color
     -- Snacks defaults to black when `win` opens, always overriding colorscheme
     local function get_backdrop_color()
-      local hl = vim.api.nvim_get_hl(0, { name = "NormalFloat", link = false })
+      local hl = vim.api.nvim_get_hl(0, { name = "SnacksBackdrop", link = false })
       local bg = hl.bg or vim.api.nvim_get_hl(0, { name = "Normal", link = false }).bg
       if not bg then
         return "#000000"
@@ -100,7 +124,7 @@ return {
       Snacks.config.win = vim.tbl_deep_extend("force", Snacks.config.win or {}, {
         backdrop = {
           bg = bg,
-          blend = 6,
+          blend = 4,
           transparent = true, -- Set to true for blend to apply as overlay opacity
         },
       })
