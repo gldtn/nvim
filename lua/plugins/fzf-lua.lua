@@ -8,29 +8,34 @@ return {
   -- stylua: ignore
   keys = {
     { "ff", "<cmd>FzfLua files<CR>", desc = "Files" },
-    { "<leader>fw", "<cmd>FzfLua grep_cword<CR>", desc = "Grep Word" },
-    { "<leader>fh", "<cmd>FzfLua helptags<CR>", desc = "Helptags" },
-    { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live Grep" },
-    { "<leader>fl", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
-    { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
-    { "<leader>fR", "<cmd>FzfLua resume<CR>", desc = "Resume Fzf-Lua" },
-    { "<leader>nh", "<cmd>Noice fzf<CR>", desc = "Notification history" },
     { "bb", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
-    { "<leader>fd", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles" },
     { "<leader>fb", function() -- live_grep current buffer
       require("fzf-lua").lgrep_curbuf({
         multiprocess = true,
         cmd = "rg --column --line-number --no-heading --color=always --smart-case",
         prompt = " 󰱼 ",
         winopts = {
-          -- width = 1,
-          -- height = 0.4,
-          -- backdrop = 12,
-          -- row = vim.o.lines - 2,
-          split = "botright new" -- loving this bottom split
+          split = "botright new" -- bottom split
         },
       })
     end, desc = "Live Grep Current Buffer" },
+    { "<leader>fw", function() -- grep current word
+      require("fzf-lua").grep_cword({
+        multiprocess = true,
+        cmd = "rg --column --line-number --no-heading --color=always --smart-case",
+        prompt = " 󰱼 ",
+        winopts = {
+          split = "botright new" -- bottom split
+        },
+      })
+    end, desc = "Grep Word" },
+    { "<leader>fd", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles" },
+    { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live Grep" },
+    { "<leader>fh", "<cmd>FzfLua helptags<CR>", desc = "Helptags" },
+    { "<leader>fl", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
+    { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
+    { "<leader>fR", "<cmd>FzfLua resume<CR>", desc = "Resume Fzf-Lua" },
+    { "<leader>nh", "<cmd>Noice fzf<CR>", desc = "Notification history" },
     { "<leader>ca", "<cmd>FzfLua lsp_code_actions<CR>", desc = "LSP Code Actions" },
     { "<leader>gr", "<cmd>FzfLua lsp_references<CR>", desc = "LSP References" },
     { "<leader>gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "LSP Definitions" },
