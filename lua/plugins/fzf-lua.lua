@@ -25,6 +25,7 @@ return {
         winopts = {
           width = 1,
           height = 0.3,
+          backdrop = 25,
           row = vim.o.lines - 2,
         },
       })
@@ -35,8 +36,12 @@ return {
   },
   config = function()
     require("fzf-lua").register_ui_select() -- Register as UI select backend
-
     local actions = require("fzf-lua.actions")
+    local actions_keys = {
+      ["ctrl-l"] = actions.file_vsplit,
+      ["ctrl-j"] = actions.file_split,
+    }
+
     require("fzf-lua").setup({
       keymap = {
         builtin = {
@@ -57,7 +62,7 @@ return {
       winopts = {
         width = 0.80,
         height = 0.80,
-        backdrop = 6,
+        backdrop = 3,
         title_flags = false,
         preview = {
           horizontal = "right:75%",
@@ -72,23 +77,20 @@ return {
         prompt = "   ",
         cwd_prompt = false,
         formatter = "path.filename_first",
-        actions = {
-          ["ctrl-l"] = actions.file_vsplit,
-          ["ctrl-j"] = actions.file_split,
-        },
+        actions = actions_keys,
       },
       grep = {
         prompt = " 󰱼  ",
         rg_glob = true,
         glob_flag = "--iglob",
         glob_separator = "%s%-%-",
+        actions = actions_keys,
       },
       buffers = {
         prompt = "   ",
         winopts = {
-          width = 0.33,
-          height = 0.43,
-          backdrop = 25,
+          width = 0.35,
+          height = 0.45,
           preview = { hidden = "hidden" },
         },
       },
@@ -107,32 +109,22 @@ return {
           },
         },
       },
-      oldfiles = { prompt = "   " },
+      oldfiles = {
+        prompt = "   ",
+        actions = actions_keys,
+      },
       helptags = { prompt = "   " },
       manpages = { prompt = "   " },
       highlights = {
         prompt = "   ",
-        -- cmd = "rg --column --line-number --no-heading --color=always --smart-case",
+        cmd = "rg --column --line-number --no-heading --color=always --smart-case",
         winopts = {
           width = 1,
           height = 0.3,
+          backdrop = 25,
           row = vim.o.lines - 2,
         },
       },
     })
   end,
-  -- config = function(_, opts)
-  --   require("fzf-lua").setup(opts)
-  --   -- local actions = require("fzf-lua.actions")
-  --   -- require("fzf-lua").setup({
-  --   --   files = {
-  --   --     actions = {
-  --   --       ["ctrl-l"] = actions.file_vsplit,
-  --   --       ["ctrl-j"] = actions.file_split,
-  --   --     },
-  --   --   },
-  --   -- })
-  --
-  --   require("fzf-lua").register_ui_select() -- Register as UI select backend
-  -- end,
 }

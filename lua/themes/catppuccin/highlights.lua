@@ -1,4 +1,4 @@
-local schema = require("themes.highlights-schema")
+local schema = require("themes.hl-schema")
 
 local M = {}
 
@@ -31,11 +31,11 @@ M.custom_hl = function(c)
     preview = { fg = bg.bc1, bg = c.green },
   }
 
-  -- Call schema.setup to populate the highlights
-  local schema_highlights = schema.get_highlights(accent, neutral, muted, bg, title)
+  -- Call schema.get to populate the highlights
+  local hl_schema = schema.get(accent, neutral, muted, bg, title)
 
   -- Define extra highlights
-  local extra_highlights = {
+  local hl_extras = {
     -- dashboard
     dashKey1 = { fg = c.blue },
     dashKey2 = { fg = c.sky },
@@ -58,11 +58,11 @@ M.custom_hl = function(c)
   }
 
   -- Merge schema/extra hls
-  for k, v in pairs(extra_highlights) do
-    schema_highlights[k] = v
+  for k, v in pairs(hl_extras) do
+    hl_schema[k] = v
   end
 
-  return schema_highlights
+  return hl_schema
 end
 
 return M

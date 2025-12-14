@@ -1,6 +1,6 @@
 local M = {}
 
-M.get_highlights = function(accent, neutral, muted, bg, title)
+M.get = function(accent, neutral, muted, bg, title)
   -- backdrop blend level
   local blend = 6
 
@@ -19,16 +19,16 @@ M.get_highlights = function(accent, neutral, muted, bg, title)
     -- float backdrops
     LazyBackdrop = { bg = bg.bc1, blend = blend },
     MasonBackdrop = { bg = bg.bc1, blend = blend },
-    FzfLuaBackdrop = { bg = bg.bc1, blend = blend },
+    FzfLuaBackdrop = { bg = bg.bc1 }, -- see fzf-lua config for blend
     SnacksBackdrop = { bg = bg.bc1 }, -- see snacks config for blend
 
-    -- fzf-lua titles
+    -- Snacks titles
     SnacksPickerTitle = { link = "FloatTitle" },
     SnacksPickerPreviewTitle = { link = "PreviewTitle" },
 
     -- snacks pickers
     SnacksPicker = { bg = bg.bc1 },
-    SnacksPickerBorder = { fg = muted.mc1, bg = bg.bc1 },
+    SnacksPickerBorder = { fg = muted.mc2, bg = bg.bc1 },
 
     -- snacks ident-scope
     SnacksIndent = { fg = muted.mc1 },
@@ -85,24 +85,23 @@ M.get_highlights = function(accent, neutral, muted, bg, title)
     TelescopePromptNormal = { fg = neutral.nc1, bg = muted.mc1 },
 
     -- telescope borders
-    TelescopeBorder = { fg = bg.bc2, bg = bg.bc2 },
+    TelescopeBorder = { fg = muted.mc2, bg = bg.bc1 },
     TelescopePromptBorder = { fg = muted.mc1, bg = muted.mc1 },
-    TelescopePreviewBorder = { fg = bg.bc1, bg = bg.bc2 },
+    TelescopePreviewBorder = { fg = muted.mc2, bg = muted.mc1 },
 
     -- whichkey
-    WhichKeyTitle = { link = "Comment" },
-    WhichKeyBorder = { link = "Comment" },
+    WhichKeyTitle = { fg = neutral.nc2, bg = bg.bc1 },
+    WhichKeyBorder = { fg = muted.mc3, bg = bg.bc1 },
+    WhichKeyNormal = { bg = bg.bc1 },
   }
 end
 
 M.setup = function(hl, accent, neutral, primary, muted, title)
   -- Set the highlights using hl
-  local highlights = M.get_highlights(accent, neutral, primary, muted, title)
-
+  local highlights = M.get(accent, neutral, primary, muted, title)
   -- Apply the highlights to hl (the highlight table provided by tokyonight)
   for group, settings in pairs(highlights) do
     hl[group] = settings
   end
 end
-
 return M

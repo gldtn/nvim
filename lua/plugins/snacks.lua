@@ -6,9 +6,15 @@ return {
   keys = {
     -- Top Pickers & Explorer
     { "\\", function() Snacks.explorer() end, desc = "File Explorer" },
+    { "<leader>fs", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
     -- git
     { "<leader>og", function() Snacks.lazygit() end, desc = "Lazygit" },
     { "<C-g>", function() Snacks.lazygit() end, desc = "Lazygit" },
+    -- Grep
+    { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+    { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+    { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
+    { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
     -- search
     { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
     { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
@@ -124,7 +130,7 @@ return {
       Snacks.config.win = vim.tbl_deep_extend("force", Snacks.config.win or {}, {
         backdrop = {
           bg = bg,
-          blend = 4,
+          blend = 3,
           transparent = true, -- Set to true for blend to apply as overlay opacity
         },
       })
