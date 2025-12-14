@@ -17,16 +17,17 @@ return {
     { "<leader>nh", "<cmd>Noice fzf<CR>", desc = "Notification history" },
     { "bb", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
     { "<leader>fd", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles" },
-    -- live_grep current buffer
-    { "<leader>fb", function()
+    { "<leader>fb", function() -- live_grep current buffer
       require("fzf-lua").lgrep_curbuf({
+        multiprocess = true,
         cmd = "rg --column --line-number --no-heading --color=always --smart-case",
         prompt = " 󰱼 ",
         winopts = {
-          width = 1,
-          height = 0.3,
-          backdrop = 25,
-          row = vim.o.lines - 2,
+          -- width = 1,
+          -- height = 0.4,
+          -- backdrop = 12,
+          -- row = vim.o.lines - 2,
+          split = "botright new" -- loving this bottom split
         },
       })
     end, desc = "Live Grep Current Buffer" },
@@ -117,11 +118,10 @@ return {
       manpages = { prompt = "   " },
       highlights = {
         prompt = "   ",
-        cmd = "rg --column --line-number --no-heading --color=always --smart-case",
         winopts = {
           width = 1,
-          height = 0.3,
-          backdrop = 25,
+          height = 0.5,
+          backdrop = 12,
           row = vim.o.lines - 2,
         },
       },
