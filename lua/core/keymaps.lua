@@ -7,7 +7,7 @@ local map = require("core.utils").map
 
 -- selection
 map("n", "<C-a>", "ggVG", { desc = "Select all" })
-map("n", "<C-b>", "<C-v>", { desc = "Enter Visual Block mode" })
+map("n", "<C-S-b>", "<C-v>", { desc = "Enter Visual Block mode" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
