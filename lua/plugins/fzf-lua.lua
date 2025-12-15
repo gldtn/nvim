@@ -1,3 +1,14 @@
+local finder_opts = { -- options for grepping current buffer
+  -- multiprocess = true,
+  cmd = "rg --column --line-number --no-heading --color=always --smart-case",
+  prompt = " 󰱼 ",
+  winopts = {
+    split = "botright new", -- bottom split
+  },
+}
+-- fzf-lua.lsp_references does not support multiprocess, hence the separate table
+local multiprocess_true = vim.tbl_extend("force", finder_opts, { multiprocess = true })
+
 return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
@@ -8,37 +19,20 @@ return {
   -- stylua: ignore
   keys = {
     { "ff", "<cmd>FzfLua files<CR>", desc = "Files" },
-    { "<C-b>", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
-    { "<leader>fb", function() -- live_grep current buffer
-      require("fzf-lua").lgrep_curbuf({
-        multiprocess = true,
-        cmd = "rg --column --line-number --no-heading --color=always --smart-case",
-        prompt = " 󰱼 ",
-        winopts = {
-          split = "botright new" -- bottom split
-        },
-      })
-    end, desc = "Live Grep Current Buffer" },
-    { "<leader>fw", function() -- grep current word
-      require("fzf-lua").grep_cword({
-        multiprocess = true,
-        cmd = "rg --column --line-number --no-heading --color=always --smart-case",
-        prompt = " 󰱼 ",
-        winopts = {
-          split = "botright new" -- bottom split
-        },
-      })
-    end, desc = "Grep Word" },
+    { "<leader><Space>", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
+    { "<leader>fb", function() require("fzf-lua").lgrep_curbuf(multiprocess_true) end, desc = "Live Grep Current Buffer" },
     { "<leader>fd", function() require("fzf-lua").files({ cwd = "~/.config" }) end, desc = "Dotfiles" },
     { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live Grep" },
     { "<leader>fh", "<cmd>FzfLua helptags<CR>", desc = "Helptags" },
     { "<leader>fl", "<cmd>FzfLua highlights<CR>", desc = "Highlights" },
     { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Old/Recent files" },
     { "<leader>fR", "<cmd>FzfLua resume<CR>", desc = "Resume Fzf-Lua" },
+    { "<leader>fw", function() require("fzf-lua").grep_cword(multiprocess_true) end, desc = "Grep Word" },
     { "<leader>nh", "<cmd>Noice fzf<CR>", desc = "Notification history" },
     { "<leader>ca", "<cmd>FzfLua lsp_code_actions<CR>", desc = "LSP Code Actions" },
-    { "<leader>gr", "<cmd>FzfLua lsp_references<CR>", desc = "LSP References" },
     { "<leader>gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "LSP Definitions" },
+    { "<leader>gi", "<cmd>FzfLua lsp_implementations<CR>", desc = "LSP Implementations" },
+    { "<leader>gr", function() require("fzf-lua").lsp_references(finder_opts) end, desc = "LSP References" },
   },
   config = function()
     require("fzf-lua").register_ui_select() -- Register as UI select backend
