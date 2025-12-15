@@ -7,7 +7,7 @@ return {
   },
   -- stylua: ignore
   keys = {
-    { "<ff>", "<cmd>FzfLua files<CR>", desc = "Files" },
+    { "ff", "<cmd>FzfLua files<CR>", desc = "Files" },
     { "<C-b>", "<cmd>FzfLua buffers<CR>", desc = "List Buffers" },
     { "<leader>fb", function() -- live_grep current buffer
       require("fzf-lua").lgrep_curbuf({
