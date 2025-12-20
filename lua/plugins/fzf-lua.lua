@@ -1,12 +1,12 @@
-local finder_opts = { -- options for grepping current buffer
-  -- multiprocess = true,
+local finder_opts = { -- options for grep curbuff/cword and lsp_references
   cmd = "rg --column --line-number --no-heading --color=always --smart-case",
   prompt = " 󰱼 ",
   winopts = {
     split = "botright new", -- bottom split
   },
 }
--- fzf-lua.lsp_references does not support multiprocess, hence the separate table
+-- fzf-lua.lsp_references does not support multiprocess, hence the tbl extend
+-- NOTE: Multiprocess makes rg run faster in large files/projects
 local multiprocess_true = vim.tbl_extend("force", finder_opts, { multiprocess = true })
 
 return {
@@ -76,11 +76,13 @@ return {
       files = {
         prompt = "   ",
         cwd_prompt = false,
+        multiprocess = true,
         formatter = "path.filename_first",
         actions = actions_keys,
       },
       grep = {
         prompt = " 󰱼  ",
+        multiprocess = true,
         rg_glob = true,
         glob_flag = "--iglob",
         glob_separator = "%s%-%-",

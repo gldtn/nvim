@@ -56,11 +56,12 @@ return {
           diagnostics = {
             signs = true,
             underline = true,
-            update_in_insert = true,
+            update_in_insert = false,
             virtual_text = {
               source = "if_many",
               prefix = " ● ",
             },
+            severity_sort = true,
           },
         },
 
@@ -87,7 +88,7 @@ return {
             buf_map("n", "<C-S-h>", vim.lsp.buf.signature_help, "Signature Help")
           end
 
-          -- Apply diagnostic configuration
+          -- Apply diagnostic configuration globally
           vim.diagnostic.config(opts.diagnostics)
 
           -- intelephense license key setup
@@ -101,8 +102,8 @@ return {
           local servers = {
 
             lua_ls = {
-              -- cmd = { "lua-language-server" },
-              cmd = { "/usr/bin/lua-language-server" },
+              cmd = { "lua-language-server" },
+              -- cmd = { "/usr/bin/lua-language-server" },
               settings = {
                 Lua = {
                   runtime = { version = "LuaJIT" },
@@ -170,13 +171,15 @@ return {
             },
           }
 
-          -- Apply settings to all servers
+          -- Configure LSP capabilities once globally
+          local capabilities = vim.lsp.protocol.make_client_capabilities()
+          local ok_cmp, cmp = pcall(require, "blink.cmp")
+          if ok_cmp then
+            capabilities = vim.tbl_deep_extend("force", capabilities, cmp.get_lsp_capabilities())
+          end
+          -- Apply settings to all servers using new v0.12 API
           for name, config in pairs(servers) do
-            -- inject cmp capabilities to blink if available
-            local ok_cmp, cmp = pcall(require, "blink.cmp")
-            if ok_cmp then
-              config.capabilities = cmp.get_lsp_capabilities(config.capabilities)
-            end
+            config.capabilities = vim.tbl_deep_extend("force", capabilities, config.capabilities or {})
             -- on_attach LSP keymaps
             if not config.on_attach then
               config.on_attach = on_attach
