@@ -33,12 +33,12 @@ map({ "n", "v" }, "<C-/>", "gcc", { desc = "Line comment", remap = true })
 map({ "n", "v" }, "<C-p>", "gcip", { desc = "Paragraph comment", remap = true })
 
 -- Move Lines
-map("n", "<C-S-j>", "<cmd>m .+1<cr>==", { desc = "Move line down (n)" })
-map("n", "<C-S-k>", "<cmd>m .-2<cr>==", { desc = "Move line up (n)" })
-map("i", "<C-S-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move line down (i)" })
-map("i", "<C-S-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move line up (i)" })
-map("v", "<C-S-j>", ":m '>+1<cr>gv=gv", { desc = "Move line down (v)" })
-map("v", "<C-S-k>", ":m '<-2<cr>gv=gv", { desc = "Move line up (v)" })
+map("n", "<M-j>", "<cmd>m .+1<cr>==", { desc = "Move line down (n)" })
+map("n", "<M-k>", "<cmd>m .-2<cr>==", { desc = "Move line up (n)" })
+map("i", "<M-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move line down (i)" })
+map("i", "<M-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move line up (i)" })
+map("v", "<M-j>", ":m '>+1<cr>gv=gv", { desc = "Move line down (v)" })
+map("v", "<M-k>", ":m '<-2<cr>gv=gv", { desc = "Move line up (v)" })
 
 -- buffers
 map("n", "<S-l>", ":bnext<cr>", { desc = "Next Buffer" })

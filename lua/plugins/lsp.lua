@@ -26,6 +26,7 @@ return {
             -- LSP's
             "zls",
             "html",
+            "gopls",
             "vimls",
             "cssls",
             "vue_ls",
@@ -33,6 +34,7 @@ return {
             "jsonls",
             "bashls",
             "yamlls",
+            "hyprls",
             "intelephense",
             "tailwindcss",
             -- linters
@@ -45,6 +47,7 @@ return {
             "black",
             "isort",
             "stylua",
+            "goimports",
             "prettierd",
             "blade-formatter",
           },
@@ -99,6 +102,7 @@ return {
             return string.gsub(content, "%s+", "")
           end
 
+          local util = require("lspconfig.util")
           local servers = {
 
             lua_ls = {
@@ -118,6 +122,23 @@ return {
                 client.server_capabilities.semanticTokensProvider = nil
                 on_attach(client, bufnr)
               end,
+            },
+
+            gopls = {
+              cmd = { "gopls" },
+              filetypes = { "go", "gomod", "gowork", "gotmpl" },
+              root_markers = util.root_pattern("go.mod", "go.work", ".git"),
+              settings = {
+                gopls = {
+                  analyses = {
+                    unusedparams = true, -- Enables detection of unused function parameters
+                    shadow = true, -- Warns when a variable declaration shadows a variable in an outer scope
+                  },
+                  staticcheck = true, -- Enables additional static analysis beyond the default checks
+                  usePlaceholders = true, -- Enables placeholders in code completions
+                  completeUnimported = true, -- Enables completion suggestions for packages that are not yet imported
+                },
+              },
             },
 
             cssls = {

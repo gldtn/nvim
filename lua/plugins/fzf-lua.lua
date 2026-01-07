@@ -2,7 +2,12 @@ local finder_opts = { -- options for grep curbuff/cword and lsp_references
   cmd = "rg --column --line-number --no-heading --color=always --smart-case",
   prompt = " 󰱼 ",
   winopts = {
-    split = "botright new", -- bottom split
+    -- split = "botright new", -- bottom split
+    height = 0.5,
+    width = 1,
+    row = vim.o.lines - 2,
+    border = { "▍", " ", " ", " ", " ", " ", "▍", "▍" },
+    fullscreen = false,
   },
 }
 -- fzf-lua.lsp_references does not support multiprocess, hence the tbl extend
@@ -59,6 +64,7 @@ return {
         },
       },
       fzf_colors = true,
+      ui_select = true,
       winopts = {
         width = 0.80,
         height = 0.80,

@@ -20,6 +20,7 @@ return {
         json = { "prettierd" },
         markdown = { "prettierd" },
         javascript = { "prettierd" },
+        go = { "goimports", "gofmt" },
         python = { "isort", "black" },
         blade = { "blade-formatter" },
         php = { "pint", "blade-formatter" },
