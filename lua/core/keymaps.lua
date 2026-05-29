@@ -18,7 +18,7 @@ map("n", "<leader>sw", ":%s/<C-R><C-W>/", { desc = "Search and replace with word
 -- map({ "n", "v" }, "p", '"_dP') -- don't yank on paste selection
 map("n", "x", '"_x', { noremap = true }) -- don't yank on single char delete
 
--- Identing; stay in indent mode
+-- Indenting; stay in indent mode
 map("v", "<", "<gv^")
 map("v", ">", ">gv^")
 
@@ -43,6 +43,8 @@ map("v", "<M-k>", ":m '<-2<cr>gv=gv", { desc = "Move line up (v)" })
 -- buffers
 map("n", "<S-l>", ":bnext<cr>", { desc = "Next Buffer" })
 map("n", "<S-h>", ":bprevious<cr>", { desc = "Prev Buffer" })
+map("n", "bc", ":bd<cr>", { desc = "Close Buffer" })
+map("n", "bk", ":bd!<cr>", { desc = "Kill Buffer" })
 
 -- move to window using the <ctrl> <shift> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = false })
@@ -55,7 +57,8 @@ map("n", "<leader>cs", ":source %<cr>", { desc = "Source current file" })
 -- quit binds
 map("n", "qq", "<cmd>qa<cr>", { desc = "Exit nvim" })
 map("n", "qr", "<cmd>restart<cr>", { desc = "Restart nvim" })
-map("n", "qa", "<cmd>qa!<cr>", { desc = "Quit without saving" })
+map("n", "qb", "<cmd>bd!<cr>", { desc = "Quit without saving" })
+map("n", "bc", "<cmd>bd!<cr>", { desc = "Quit without saving" })
 
 -- save file; notifications
 local save_desc = "Save file"
@@ -63,22 +66,22 @@ local save_title = "Save Notification"
 local save_msg = "File saved successfully!"
 local info_msg = vim.log.levels.INFO
 
--- save
+-- Normal mode
 map("n", "<C-s>", function()
-  vim.cmd("w")
+  vim.cmd("update")
   vim.notify(save_msg, info_msg, { title = save_title })
 end, { desc = save_desc })
 
--- exit insert mode, save file
+--- Insert mode
 map("i", "<C-s>", function()
-  vim.cmd("stopinsert") -- Exit insert mode
-  vim.cmd("w")
+  vim.cmd("stopinsert")
+  vim.cmd("update")
   vim.notify(save_msg, info_msg, { title = save_title })
 end, { desc = save_desc })
 
--- exit visual modes (visual, visual-line, visual-block), save file
+-- Visual modes
 map({ "v", "x" }, "<C-s>", function()
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
-  vim.cmd("w")
+  vim.cmd("normal! <Esc>")
+  vim.cmd("update")
   vim.notify(save_msg, info_msg, { title = save_title })
 end, { desc = save_desc })

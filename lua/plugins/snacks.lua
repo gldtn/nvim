@@ -69,7 +69,7 @@ return {
         files = {},
         explorer = {
           hidden = true,
-          auto_close = true,
+          auto_close = false,
           layout = {
             preset = "sidebar",
             layout = {

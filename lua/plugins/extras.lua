@@ -27,6 +27,11 @@ return {
       },
     },
   },
+  { -- auto tag closing
+    "windwp/nvim-ts-autotag",
+    ft = { "html", "php", "blade", "vue", "svelte" },
+    opts = {},
+  },
   { -- autopair characters support
     "windwp/nvim-autopairs",
     event = "InsertEnter",
