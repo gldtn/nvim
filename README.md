@@ -17,10 +17,11 @@ Always a WIP ⚒️..
 - Catppuccin
 - Tokyonight
 - Cyberdream
+- Kanagawa
 
 ## Requirements
 
-- Neovim v0.12
+- Neovim v0.12+
 
 ## About This Version
 
