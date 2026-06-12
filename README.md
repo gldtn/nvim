@@ -21,7 +21,6 @@ Always a WIP ⚒️..
 ## Requirements
 
 - Neovim v0.12
-- Ghostty 1.2+ (Theme switching also changes Ghostty themes)
 
 ## About This Version
 

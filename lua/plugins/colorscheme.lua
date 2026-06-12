@@ -1,6 +1,7 @@
 -- Add new themes here:
 --   ["name"] = { repo = "author/plugin", dev = false }
 local themes = {
+  ["kanagawa"] = { repo = "rebelot/kanagawa.nvim", dev = false },
   ["catppuccin"] = { repo = "catppuccin/nvim", dev = false },
   ["tokyonight"] = { repo = "folke/tokyonight.nvim", dev = false },
   ["cyberdream"] = { repo = "scottmckendry/cyberdream.nvim", dev = false },
@@ -43,44 +44,64 @@ local function safe_colorscheme(name)
     _G.active_theme = name
     save_last_theme(name)
 
-    -- 🔥 force-run ColorScheme again with the *new* theme value
+    -- force-run ColorScheme again with the *new* theme value
     vim.api.nvim_exec_autocmds("ColorScheme", {})
   else
     vim.notify("Theme '" .. name .. "' not found", vim.log.levels.WARN)
   end
 end
 
----------------------------------------------------------------------
--- Set and reload ghostty terminal theme
----------------------------------------------------------------------
-local function set_ghostty_theme(name)
-  local path = vim.fn.expand("~/.config/ghostty/config")
-  if vim.fn.filereadable(path) == 0 then
+vim.api.nvim_create_user_command("KitanaTheme", function(opts)
+  local name = opts.args
+  if not themes[name] then
+    vim.notify("Theme '" .. name .. "' not found", vim.log.levels.WARN)
     return
   end
 
-  local lines = vim.fn.readfile(path)
-  local new = {}
-  local replaced = false
+  safe_colorscheme(name)
+end, {
+  nargs = 1,
+  complete = function()
+    return vim.tbl_keys(themes)
+  end,
+})
 
-  for _, line in ipairs(lines) do
-    if line:match("^%s*theme%s*=") then
-      table.insert(new, "theme = " .. name)
-      replaced = true
-    else
-      table.insert(new, line)
-    end
+local function apply_cached_theme()
+  local name = load_last_theme()
+  if name and name ~= _G.active_theme then
+    safe_colorscheme(name)
   end
-
-  if not replaced then
-    table.insert(new, "theme = " .. name)
-  end
-
-  vim.fn.writefile(new, path)
-  vim.fn.system({ "pkill", "-SIGUSR2", "ghostty" })
 end
 
----------------------------------------------------------------------
+local theme_watcher
+local function start_theme_watcher()
+  local uv = vim.uv or vim.loop
+  if theme_watcher or not uv or not uv.new_fs_event then
+    return
+  end
+
+  local dir = vim.fn.fnamemodify(CACHE_FILE, ":h")
+  local file = vim.fn.fnamemodify(CACHE_FILE, ":t")
+  theme_watcher = uv.new_fs_event()
+
+  local ok = pcall(function()
+    theme_watcher:start(dir, {}, function(_, filename)
+      if filename and filename ~= file then
+        return
+      end
+
+      vim.schedule(apply_cached_theme)
+    end)
+  end)
+
+  if not ok then
+    theme_watcher:close()
+    theme_watcher = nil
+  end
+end
+
+start_theme_watcher()
+
 -- Set lazy.nvim theme specs
 ---------------------------------------------------------------------
 local specs = {}
@@ -104,8 +125,7 @@ for name, info in pairs(themes) do
   }
 end
 
----------------------------------------------------------------------
--- Theme picker (updates Neovim + Ghostty)
+-- Theme picker
 ---------------------------------------------------------------------
 vim.keymap.set("n", "<leader>uc", function()
   local ok, fzf = pcall(require, "fzf-lua")
@@ -126,7 +146,6 @@ vim.keymap.set("n", "<leader>uc", function()
         end
 
         safe_colorscheme(name)
-        set_ghostty_theme(name)
       end,
     },
     winopts = {
@@ -134,7 +153,7 @@ vim.keymap.set("n", "<leader>uc", function()
       width = 0.33,
     },
   })
-end, { desc = "Colorscheme (Neovim + Ghostty)" })
+end, { desc = "Colorscheme" })
 
 ---------------------------------------------------------------------
 -- Lualine auto-update on ColorScheme

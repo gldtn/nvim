@@ -187,7 +187,7 @@ return {
                 },
               },
               init_options = {
-                licenceKey = get_intelephense_license(),
+                -- licenceKey = get_intelephense_license(), -- TODO: set intelephense license file
               },
             },
           }
